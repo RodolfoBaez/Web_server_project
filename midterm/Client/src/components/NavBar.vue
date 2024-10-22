@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 
 const isOpen = ref(false)
 </script>
-
+<!-- alwasy name componet with twoword name-->
 <template>
   <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="container">
