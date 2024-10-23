@@ -1,15 +1,17 @@
-<!-- src/components/Navbar.vue -->
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import UserDropdown from './UserDropdown.vue';
+import { defineEmits } from 'vue';
 
 const isOpen = ref(false);
 const loggedInUser = ref<{ id: number; name: string; profileImage: string } | null>(null);
+const emit = defineEmits(['user-logged-in']); // Emit event for user-logged-in
 
 // Function to handle user login when a user is selected
 const handleUserLoggedIn = (user: { id: number; name: string; profileImage: string }) => {
   loggedInUser.value = user; // Set the selected user as the logged-in user
+  emit('user-logged-in', user); // Emit the user to the parent
 };
 
 // Function to log out the user
@@ -54,11 +56,10 @@ const logOut = () => {
               <img :src="loggedInUser.profileImage" alt="User profile" class="profile-image" />
               <span class="username">{{ loggedInUser.name }}</span>
 
-                <!-- Display logout button and user profile image when logged in -->
+              <!-- Display logout button and user profile image when logged in -->
               <button class="button is-light" @click="logOut">
                 Log Out
               </button>
-
             </div>
             
             <div v-else>

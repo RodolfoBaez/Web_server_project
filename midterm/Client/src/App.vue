@@ -1,15 +1,24 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { ref } from 'vue';
+import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue';
+
+// State to hold the currently logged-in user
+const currentUser = ref(null);
+
+// Function to handle user login when a user is selected
+const handleUserLoggedIn = (user) => {
+  currentUser.value = user; // Set the selected user as the logged-in user
+};
 </script>
 
 <template>
   <header>
-    <NavBar />
+    <NavBar @user-logged-in="handleUserLoggedIn" /> <!-- Pass the handler to NavBar -->
   </header>
 
   <div class="container">
-    <RouterView />
+    <RouterView :currentUser="currentUser" /> <!-- Pass the currentUser to RouterView -->
   </div>
 </template>
 

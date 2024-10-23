@@ -1,116 +1,81 @@
+
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, watch, defineProps } from 'vue';
+import { getAll as getAllPosts, type Post } from '@/models/posts';
+import PostCard from '@/components/PostCard.vue';
 
-const workoutTitle = ref('');
-const workoutType = ref('');
-const workoutFrequency = ref('daily');
-const workoutTags = ref('');
-const workoutImage = ref<File | null>(null);
+const props = defineProps(['currentUser']); // Receive currentUser as prop
 
-const handleSubmit = () => {
-  if (!workoutTitle.value || !workoutImage.value || !workoutType.value) {
-    alert('Please provide a workout title, type, frequency, and image.');
-    return;
+// Retrieve all posts
+const allPosts = getAllPosts().data;
+
+// Filter posts by the current user
+const userPosts = computed(() => {
+  if (props.currentUser) {
+    return allPosts.filter((post: Post) => post.userId === props.currentUser.id);
   }
-  
-  const formData = new FormData();
-  formData.append('title', workoutTitle.value);
-  formData.append('type', workoutType.value);
-  formData.append('frequency', workoutFrequency.value);
-  formData.append('tags', workoutTags.value);
-  if (workoutImage.value) {
-    formData.append('image', workoutImage.value);
-  }
-
-  console.log('Form submitted', {
-    title: workoutTitle.value,
-    type: workoutType.value,
-    frequency: workoutFrequency.value,
-    tags: workoutTags.value,
-    image: workoutImage.value,
-  });
-
-  workoutTitle.value = '';
-  workoutType.value = '';
-  workoutFrequency.value = 'daily';
-  workoutTags.value = '';
-  workoutImage.value = null;
-};
+  return [];
+});
 </script>
 
 <template>
-    <div>
-        <h1 class="title">Incoming Soon</h1>
-        <h2 class="title">Todo:</h2>
-        <h2 class="title">Display user activity data here</h2>
-
-        <form @submit.prevent="handleSubmit" class="activity-form">
-            <div>
-                <label for="title">Workout Title:</label>
-                <input type="text" id="title" v-model="workoutTitle" required />
-            </div>
-            <div>
-                <label for="type">Workout Type:</label>
-                <select id="type" v-model="workoutType" required>
-                    <option value="">Select Type</option>
-                    <option value="cardio">Cardio</option>
-                    <option value="strength">Strength</option>
-                    <option value="flexibility">Flexibility</option>
-                </select>
-            </div>
-            <div>
-                <label for="frequency">Frequency:</label>
-                <select id="frequency" v-model="workoutFrequency">
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                </select>
-            </div>
-            <div>
-                <label for="tags">Tags (comma-separated):</label>
-                <input type="text" id="tags" v-model="workoutTags" />
-            </div>
-            <div>
-                <label for="image">Upload Image:</label>
-                <input type="file" id="image" @change="event => workoutImage.value = event.target.files[0]" accept="image/*" required />
-            </div>
-            <button type="submit">Log Activity</button>
-        </form>
+    <div class="activity">
+      <h1 class="title">Current User Activity</h1>
+      
+      <div v-if="currentUser" class="user-info">
+        <img :src="currentUser.profileImage" alt="User profile" class="profile-image" />
+        <h2>{{ currentUser.name }}</h2>
+      </div>
+  
+      <div class="activity-shelf" v-if="currentUser && userPosts.length">
+        <PostCard
+          v-for="(post, index) in userPosts"
+          :key="index"
+          :post="post"
+          :user="currentUser"
+        />
+      </div>
+  
+      <div v-else>
+        <p v-if="!currentUser">Please select a user to see their activity.</p>
+        <p v-else>No posts found for this user.</p>
+      </div>
     </div>
-</template>
-
-<style scoped>
-.activity-form {
-    margin-top: 20px;
+  </template>
+  
+  <style scoped>
+  .activity {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .user-info {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .activity-shelf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 1.5rem; 
+  padding: 1rem; 
 }
 
-.activity-form div {
-    margin-bottom: 15px;
+.activity-shelf .post-card {
+  flex: 1 1 calc(50% - 2rem); 
+  max-width: 500px; 
+  height: auto; 
 }
 
-.activity-form label {
-    margin-bottom: 5px;
-}
-
-.activity-form input,
-.activity-form select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.activity-form button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.activity-form button:hover {
-    background-color: #0056b3;
-}
-</style>
+  </style>
+  

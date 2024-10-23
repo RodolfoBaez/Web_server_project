@@ -27,7 +27,7 @@ const postsWithUserDetails = computed(() => {
     const user = allUsers.find((user: User) => user.id === post.userId);
     return {
       post,
-      user: user || { id: -1, username: 'Unknown', profileImageUrl: '' } // Ensure default user structure
+      user: user || { id: -1, username: 'Unknown', profileImageUrl: '' } 
     };
   });
 });
