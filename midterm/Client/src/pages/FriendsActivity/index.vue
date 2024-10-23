@@ -11,8 +11,8 @@ displayedPosts.value = allPosts.slice(0, 6)
 
 async function loadMore() {
   const currentLength = displayedPosts.value.length
-  const nextPosts = allPosts.slice(currentLength, currentLength + 6) 
-  await new Promise(resolve => setTimeout(resolve, 500));
+  const nextPosts = allPosts.slice(currentLength, currentLength + 6)
+  await new Promise(resolve => setTimeout(resolve, 500))
   displayedPosts.value = [...displayedPosts.value, ...nextPosts]
 }
 </script>
@@ -29,36 +29,49 @@ async function loadMore() {
 </template>
 
 <style scoped>
+/* Container for the post cards */
 .activity-shelf {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: center; /* Center the cards */
+  gap: 1.5rem; /* Add space between cards */
+  padding: 1rem; /* Add padding around the shelf */
 }
 
+/* Post card layout: Two per row on larger screens */
 .activity-shelf .post-card {
-  flex: 0 0 calc(50% - 1rem); 
-  height: 400px; 
+  flex: 1 1 calc(50% - 2rem); /* Two cards per row with a gap */
+  max-width: 500px; /* Ensure cards don't get too wide */
+  height: auto; /* Auto height to accommodate variable content */
 }
 
+/* Load more button container */
 .load-more-container {
   display: flex;
   justify-content: center;
   margin: 16px 0;
 }
 
+/* Styling for the Load More button */
 .load-more {
-  padding: 8px 16px;
+  padding: 12px 24px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  margin-bottom:1rem;
+  transition: background-color 0.3s;
 }
 
 .load-more:hover {
   background-color: #0056b3;
+}
+
+/* Responsive design: One card per row on small screens */
+@media (max-width: 768px) {
+  .activity-shelf .post-card {
+    flex: 1 1 100%; /* One card per row on small screens */
+  }
 }
 </style>
