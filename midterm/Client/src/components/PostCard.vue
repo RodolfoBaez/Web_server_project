@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { Post } from '@/models/posts'
+import type { User } from '@/models/users'
+
+// Props to pass in post data and user data
 defineProps<{
-  post: Post
+  post: Post,
+  user: User
 }>()
 </script>
 
@@ -10,9 +14,9 @@ defineProps<{
     <div class="post-header">
       <!-- Profile image and username -->
       <div class="user-info">
-        <img :src="post.profileImageUrl" alt="User profile image" class="profile-image" />
+        <img :src="user.profileImageUrl" alt="User profile image" class="profile-image" />
         <div>
-          <p class="post-username">{{ post.username }}</p>
+          <p class="post-username">{{ user.username }}</p>
           <p class="post-views">👁 Views: {{ post.views }}</p>
         </div>
       </div>

@@ -1,412 +1,6 @@
 {
   "items": [
     {
-      "id": 1,
-      "title": "Back in the Groove!",
-      "body": "After taking a week off, I hit the gym hard today with a focus on back workouts and felt fantastic. Ready to crush my goals!",
-      "tags": ["fitness", "strength", "inspiration"],
-      "reactions": {
-        "likes": 325,
-        "dislikes": 10
-      },
-      "views": 1050,
-      "userId": 201,
-      "username": "Olivia Carter",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 2,
-      "title": "Leg Day Battles",
-      "body": "Leg day was a tough challenge today! Squats, lunges, and presses pushed my limits. Can't wait to feel the results tomorrow!",
-      "tags": ["legday", "challenge", "fitness"],
-      "reactions": {
-        "likes": 155,
-        "dislikes": 5
-      },
-      "views": 800,
-      "userId": 202,
-      "username": "James Rodriguez",
-      "imageUrl": "https://images.pexels.com/photos/1144864/pexels-photo-1144864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 3,
-      "title": "Cardio Kickoff!",
-      "body": "Finished an intense cardio session today! 30 minutes of running followed by cycling. Felt the sweat, but it was worth it!",
-      "tags": ["cardio", "health", "motivation"],
-      "reactions": {
-        "likes": 260,
-        "dislikes": 4
-      },
-      "views": 640,
-      "userId": 203,
-      "username": "Aisha Patel",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 4,
-      "title": "New PR!",
-      "body": "Just hit a personal record on my deadlift today! 315 lbs! Hard work really pays off. Time to set a new goal!",
-      "tags": ["deadlift", "PR", "strength"],
-      "reactions": {
-        "likes": 400,
-        "dislikes": 2
-      },
-      "views": 1340,
-      "userId": 204,
-      "username": "Noah Kim",
-      "imageUrl": "https://images.pexels.com/photos/1144864/pexels-photo-1144864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 5,
-      "title": "Morning Yoga",
-      "body": "Started my day with a refreshing yoga session. It really helps with flexibility and sets a positive tone for the day!",
-      "tags": ["yoga", "flexibility", "morningroutine"],
-      "reactions": {
-        "likes": 210,
-        "dislikes": 1
-      },
-      "views": 540,
-      "userId": 205,
-      "username": "Sofia Garcia",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 6,
-      "title": "Push-Up Challenge",
-      "body": "I’m challenging myself to do 100 push-ups a day for a week. Today was day one, and it felt great!",
-      "tags": ["pushups", "challenge", "fitness"],
-      "reactions": {
-        "likes": 175,
-        "dislikes": 3
-      },
-      "views": 300,
-      "userId": 206,
-      "username": "Ethan Wong",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 7,
-      "title": "Swimming Laps",
-      "body": "Went swimming for the first time in months. It felt good to switch things up and work out in the water!",
-      "tags": ["swimming", "fitness", "cardio"],
-      "reactions": {
-        "likes": 180,
-        "dislikes": 0
-      },
-      "views": 400,
-      "userId": 207,
-      "username": "Mia Thompson",
-      "imageUrl": "https://images.pexels.com/photos/9044077/pexels-photo-9044077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 8,
-      "title": "High-Intensity Interval Training",
-      "body": "Completed a killer HIIT workout today! It’s tough but so rewarding. Can't wait to do it again!",
-      "tags": ["HIIT", "intense", "workout"],
-      "reactions": {
-        "likes": 290,
-        "dislikes": 6
-      },
-      "views": 950,
-      "userId": 208,
-      "username": "Mateo Sanchez",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 9,
-      "title": "Stretching Routine",
-      "body": "Spent some time stretching today to improve my flexibility. Always important to balance strength with mobility!",
-      "tags": ["stretching", "flexibility", "wellness"],
-      "reactions": {
-        "likes": 150,
-        "dislikes": 1
-      },
-      "views": 320,
-      "userId": 209,
-      "username": "Isabella Martinez",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 10,
-      "title": "Fitness Journey",
-      "body": "Reflecting on my fitness journey. It's amazing how far I've come in just a year. Consistency is key!",
-      "tags": ["journey", "motivation", "fitness"],
-      "reactions": {
-        "likes": 260,
-        "dislikes": 3
-      },
-      "views": 780,
-      "userId": 210,
-      "username": "Lucas Chen",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 11,
-      "title": "Home Workout",
-      "body": "Did a full-body workout at home today using just bodyweight exercises. You don’t need a gym to get fit!",
-      "tags": ["homeworkout", "fitness", "bodyweight"],
-      "reactions": {
-        "likes": 220,
-        "dislikes": 2
-      },
-      "views": 640,
-      "userId": 211,
-      "username": "Olivia Brown",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 12,
-      "title": "Focus on Nutrition",
-      "body": "Remembering that fitness isn't just about working out; nutrition plays a huge role too! Eating clean today!",
-      "tags": ["nutrition", "health", "fitness"],
-      "reactions": {
-        "likes": 310,
-        "dislikes": 5
-      },
-      "views": 900,
-      "userId": 212,
-      "username": "Sebastian Miller",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 13,
-      "title": "Group Fitness Class",
-      "body": "Joined a group fitness class today for the first time. The energy was infectious, and I loved every minute of it!",
-      "tags": ["groupfitness", "community", "fun"],
-      "reactions": {
-        "likes": 270,
-        "dislikes": 3
-      },
-      "views": 710,
-      "userId": 213,
-      "username": "Sophia Johnson",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 14,
-      "title": "New Workout Playlist",
-      "body": "Created a new workout playlist and it’s getting me through my sessions! Music really motivates me!",
-      "tags": ["music", "motivation", "workout"],
-      "reactions": {
-        "likes": 200,
-        "dislikes": 0
-      },
-      "views": 500,
-      "userId": 214,
-      "username": "Isaac Rivera",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 15,
-      "title": "Morning Run",
-      "body": "Went for a refreshing morning run today! The fresh air is invigorating and clears my mind.",
-      "tags": ["running", "morning", "fitness"],
-      "reactions": {
-        "likes": 290,
-        "dislikes": 2
-      },
-      "views": 700,
-      "userId": 215,
-      "username": "Chloe Lee",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 16,
-      "title": "Full-Body Workout Success!",
-      "body": "Tried a new full-body workout routine today, and it kicked my butt! Feeling strong and accomplished!",
-      "tags": ["fullbody", "strength", "success"],
-      "reactions": {
-        "likes": 340,
-        "dislikes": 3
-      },
-      "views": 650,
-      "userId": 216,
-      "username": "Aria Wilson",
-      "imageUrl": "https://images.pexels.com/photos/1144864/pexels-photo-1144864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 17,
-      "title": "Sunday Funday!",
-      "body": "Had a blast at the gym today with friends! We did a fun circuit workout together. Teamwork makes the dream work!",
-      "tags": ["friends", "circuit", "fun"],
-      "reactions": {
-        "likes": 220,
-        "dislikes": 2
-      },
-      "views": 520,
-      "userId": 217,
-      "username": "Samuel Anderson",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 18,
-      "title": "Getting Stronger Every Day",
-      "body": "Every workout is a step towards my goals. Today was all about pushing my limits with strength training!",
-      "tags": ["motivation", "strength", "progress"],
-      "reactions": {
-        "likes": 360,
-        "dislikes": 1
-      },
-      "views": 800,
-      "userId": 218,
-      "username": "Nia Harris",
-      "imageUrl": "https://images.pexels.com/photos/1144864/pexels-photo-1144864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 19,
-      "title": "Gains Galore!",
-      "body": "I’m seeing gains in my muscle definition! Hard work and dedication are paying off, and I couldn’t be happier!",
-      "tags": ["gains", "muscle", "fitness"],
-      "reactions": {
-        "likes": 400,
-        "dislikes": 0
-      },
-      "views": 920,
-      "userId": 219,
-      "username": "Gabriel White",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 20,
-      "title": "Fitness Progress",
-      "body": "Documenting my fitness journey and progress. It’s amazing to see how far I’ve come in just a few months!",
-      "tags": ["progress", "journey", "fitness"],
-      "reactions": {
-        "likes": 260,
-        "dislikes": 5
-      },
-      "views": 750,
-      "userId": 220,
-      "username": "Lily Clark",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 21,
-      "title": "Morning Meditation and Workout",
-      "body": "Started my morning with meditation followed by a workout. It’s a great way to center myself for the day!",
-      "tags": ["meditation", "morning", "fitness"],
-      "reactions": {
-        "likes": 210,
-        "dislikes": 2
-      },
-      "views": 400,
-      "userId": 221,
-      "username": "Julian Hall",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 22,
-      "title": "Exploring New Classes",
-      "body": "Today I tried a kickboxing class for the first time. It was intense but super fun! Definitely going back!",
-      "tags": ["kickboxing", "fun", "new"],
-      "reactions": {
-        "likes": 320,
-        "dislikes": 0
-      },
-      "views": 850,
-      "userId": 222,
-      "username": "Amira Lewis",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 23,
-      "title": "Cooking Healthy Meals",
-      "body": "Cooking healthy meals is just as important as working out! Prepping for the week ahead with some delicious recipes.",
-      "tags": ["mealprep", "healthy", "cooking"],
-      "reactions": {
-        "likes": 290,
-        "dislikes": 1
-      },
-      "views": 600,
-      "userId": 223,
-      "username": "Anthony Scott",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 24,
-      "title": "Yoga Retreat",
-      "body": "Spent the weekend at a yoga retreat. Feeling refreshed and ready to tackle the week ahead!",
-      "tags": ["yoga", "retreat", "relaxation"],
-      "reactions": {
-        "likes": 300,
-        "dislikes": 2
-      },
-      "views": 750,
-      "userId": 224,
-      "username": "Sofia Thompson",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 25,
-      "title": "Trail Running Adventure",
-      "body": "Took my running to the next level with some trail running! The scenery was breathtaking!",
-      "tags": ["trailrunning", "adventure", "outdoors"],
-      "reactions": {
-        "likes": 350,
-        "dislikes": 1
-      },
-      "views": 900,
-      "userId": 225,
-      "username": "Mason Green",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 26,
-      "title": "Learning to Swim",
-      "body": "Just started swim lessons! It’s challenging, but I’m excited to improve my technique.",
-      "tags": ["swimming", "learning", "fitness"],
-      "reactions": {
-        "likes": 230,
-        "dislikes": 3
-      },
-      "views": 580,
-      "userId": 226,
-      "username": "Ella Young",
-      "imageUrl": "https://images.pexels.com/photos/9044077/pexels-photo-9044077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 27,
-      "title": "Fitness Challenge",
-      "body": "Joined a month-long fitness challenge with friends. Let’s see how much we can achieve together!",
-      "tags": ["challenge", "friends", "fitness"],
-      "reactions": {
-        "likes": 190,
-        "dislikes": 0
-      },
-      "views": 460,
-      "userId": 227,
-      "username": "James King",
-      "imageUrl": "https://images.pexels.com/photos/2204196/pexels-photo-2204196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 28,
-      "title": "Strength Training Progress",
-      "body": "Lifting heavier weights every week! Consistency is key to making progress.",
-      "tags": ["strength", "progress", "fitness"],
-      "reactions": {
-        "likes": 410,
-        "dislikes": 1
-      },
-      "views": 1100,
-      "userId": 228,
-      "username": "Zoe Martinez",
-      "imageUrl": "https://images.pexels.com/photos/1144864/pexels-photo-1144864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      "id": 29,
-      "title": "A Healthy Mindset",
-      "body": "Fitness is not just about the body, but also the mind. Working on my mental health while staying active.",
-      "tags": ["mindfulness", "health", "fitness"],
-      "reactions": {
-        "likes": 300,
-        "dislikes": 4
-      },
-      "views": 600,
-      "userId": 229,
-      "username": "Noah Carter",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
       "id": 30,
       "title": "Weekend Hike",
       "body": "Hiked to the top of the mountain this weekend. The view was totally worth it!",
@@ -417,10 +11,140 @@
       },
       "views": 1000,
       "userId": 230,
-      "username": "Mia Turner",
-      "imageUrl": "https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    }],
-    "total": 30,
-    "skip": 0,
-    "limit": 30
+      "imageUrl": "https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 31,
+      "title": "Morning Run",
+      "body": "Ran 5 miles along the river today. Feeling great!",
+      "tags": ["running", "fitness"],
+      "reactions": {
+        "likes": 120,
+        "dislikes": 2
+      },
+      "views": 600,
+      "userId": 231,
+      "imageUrl": "https://images.pexels.com/photos/868097/pexels-photo-868097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 32,
+      "title": "Sunset Yoga",
+      "body": "Spent the evening doing yoga by the beach as the sun set. So peaceful!",
+      "tags": ["yoga", "wellness", "beach"],
+      "reactions": {
+        "likes": 300,
+        "dislikes": 0
+      },
+      "views": 750,
+      "userId": 232,
+      "imageUrl": "https://images.pexels.com/photos/8436595/pexels-photo-8436595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 33,
+      "title": "City Marathon",
+      "body": "Completed my first city marathon today! Feeling accomplished.",
+      "tags": ["marathon", "running", "city"],
+      "reactions": {
+        "likes": 550,
+        "dislikes": 5
+      },
+      "views": 1500,
+      "userId": 233,
+      "imageUrl": "https://images.pexels.com/photos/71104/utah-mountain-biking-bike-biking-71104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 34,
+      "title": "Rock Climbing Adventure",
+      "body": "Tried rock climbing for the first time today. My arms are sore, but it was awesome!",
+      "tags": ["rockclimbing", "adventure", "fitness"],
+      "reactions": {
+        "likes": 400,
+        "dislikes": 2
+      },
+      "views": 900,
+      "userId": 234,
+      "imageUrl": "https://images.pexels.com/photos/6456178/pexels-photo-6456178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 35,
+      "title": "Strength Training",
+      "body": "Did some strength training at the gym. My muscles are on fire!",
+      "tags": ["strength", "gym", "fitness"],
+      "reactions": {
+        "likes": 510,
+        "dislikes": 4
+      },
+      "views": 1200,
+      "userId": 235,
+      "imageUrl": "https://images.pexels.com/photos/13621287/pexels-photo-13621287.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 36,
+      "title": "Group Workout",
+      "body": "Worked out with my buddies today. Nothing beats a group workout!",
+      "tags": ["group", "workout", "fitness"],
+      "reactions": {
+        "likes": 390,
+        "dislikes": 2
+      },
+      "views": 850,
+      "userId": 236,
+      "imageUrl": "https://images.pexels.com/photos/4662355/pexels-photo-4662355.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 37,
+      "title": "Pushup Challenge",
+      "body": "Completed a 100 pushup challenge today. Arms are shaking!",
+      "tags": ["pushups", "challenge", "fitness"],
+      "reactions": {
+        "likes": 270,
+        "dislikes": 1
+      },
+      "views": 700,
+      "userId": 237,
+      "imageUrl": "https://images.pexels.com/photos/6740305/pexels-photo-6740305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 38,
+      "title": "Bench Press PR",
+      "body": "Hit a new personal record on the bench press today!",
+      "tags": ["benchpress", "strength", "gym"],
+      "reactions": {
+        "likes": 480,
+        "dislikes": 3
+      },
+      "views": 1100,
+      "userId": 238,
+      "imageUrl": "https://images.pexels.com/photos/2149771/pexels-photo-2149771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 39,
+      "title": "Canoeing Adventure",
+      "body": "Went canoeing on a peaceful lake today. It was so relaxing!",
+      "tags": ["canoeing", "lake", "relaxation"],
+      "reactions": {
+        "likes": 270,
+        "dislikes": 0
+      },
+      "views": 600,
+      "userId": 239,
+      "imageUrl": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 40,
+      "title": "Boxing Session",
+      "body": "Had an intense boxing session today. Feeling strong and agile!",
+      "tags": ["boxing", "fitness", "strength"],
+      "reactions": {
+        "likes": 330,
+        "dislikes": 1
+      },
+      "views": 800,
+      "userId": 240,
+      "imageUrl": "https://images.pexels.com/photos/6456178/pexels-photo-6456178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    }
+  ],
+  "total": 12,
+  "skip": 0,
+  "limit": 30
 }

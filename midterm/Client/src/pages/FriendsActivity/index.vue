@@ -1,25 +1,46 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getAll, type Post } from '@/models/posts' 
+import { ref, computed } from 'vue'
+import { getAll as getAllPosts, type Post } from '@/models/posts' 
+import { getAll as getAllUsers, type User } from '@/models/users' 
 import PostCard from '@/components/PostCard.vue'
 
-const posts = ref<Post[]>([])
+// Retrieve all posts and users
+const allPosts = getAllPosts().data
+const allUsers = getAllUsers().data;
+
+// State to manage displayed posts
 const displayedPosts = ref<Post[]>([])
-const allPosts = getAll().data
 
-displayedPosts.value = allPosts.slice(0, 6)
+// Load the first 4 posts initially
+displayedPosts.value = allPosts.slice(0, 4)
 
-async function loadMore() {
+// Function to load more posts
+function loadMore() {
   const currentLength = displayedPosts.value.length
-  const nextPosts = allPosts.slice(currentLength, currentLength + 6)
-  await new Promise(resolve => setTimeout(resolve, 500))
+  const nextPosts = allPosts.slice(currentLength, currentLength + 4)
   displayedPosts.value = [...displayedPosts.value, ...nextPosts]
 }
+
+// Create an array of posts with user details
+const postsWithUserDetails = computed(() => {
+  return displayedPosts.value.map((post: { userId: any }) => {
+    const user = allUsers.find((user: { id: any }) => user.id === post.userId);
+    return {
+      post,
+      user: user || { username: 'Unknown', profileImageUrl: '' } 
+    };
+  });
+});
 </script>
 
 <template>
   <div class="activity-shelf">
-    <PostCard v-for="post in displayedPosts" :key="post.id" :post="post" />
+    <PostCard
+      v-for="(item, index) in postsWithUserDetails"
+      :key="index"
+      :post="item.post"
+      :user="item.user"
+    />
   </div>
   <div class="load-more-container" v-if="displayedPosts.length < allPosts.length">
     <button class="load-more" @click="loadMore">
@@ -29,30 +50,26 @@ async function loadMore() {
 </template>
 
 <style scoped>
-/* Container for the post cards */
 .activity-shelf {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center the cards */
-  gap: 1.5rem; /* Add space between cards */
-  padding: 1rem; /* Add padding around the shelf */
+  justify-content: center; 
+  gap: 1.5rem; 
+  padding: 1rem; 
 }
 
-/* Post card layout: Two per row on larger screens */
 .activity-shelf .post-card {
-  flex: 1 1 calc(50% - 2rem); /* Two cards per row with a gap */
-  max-width: 500px; /* Ensure cards don't get too wide */
-  height: auto; /* Auto height to accommodate variable content */
+  flex: 1 1 calc(50% - 2rem); 
+  max-width: 500px; 
+  height: auto; 
 }
 
-/* Load more button container */
 .load-more-container {
   display: flex;
   justify-content: center;
   margin: 16px 0;
 }
 
-/* Styling for the Load More button */
 .load-more {
   padding: 12px 24px;
   background-color: #007bff;
@@ -62,16 +79,16 @@ async function loadMore() {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
+  margin-bottom:1rem;
 }
 
 .load-more:hover {
   background-color: #0056b3;
 }
 
-/* Responsive design: One card per row on small screens */
 @media (max-width: 768px) {
   .activity-shelf .post-card {
-    flex: 1 1 100%; /* One card per row on small screens */
+    flex: 1 1 100%; 
   }
 }
 </style>

@@ -21,6 +21,5 @@ export interface Post {
   reactions: Reaction;
   views: number;
   userId: number;
-  username: string;  
   imageUrl: string;
 }
