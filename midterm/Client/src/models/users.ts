@@ -10,6 +10,6 @@ export function getAll(): DataListEnvelope<User> {
 
 export interface User {
   id: number;
-  username: string;
-  profileImageUrl: string; 
+  name: string;
+  profileImage: string; 
 }

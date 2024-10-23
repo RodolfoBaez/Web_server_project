@@ -2,23 +2,23 @@
   "items": [
     {
       "id": 230,
-      "username": "Mia Turner",
-      "profileImageUrl": "https://images.pexels.com/photos/3786191/pexels-photo-3786191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "name": "Mia Turner",
+      "profileImage": "https://images.pexels.com/photos/3786191/pexels-photo-3786191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
       "id": 231,
-      "username": "John Smith",
-      "profileImageUrl": "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "name": "John Smith",
+      "profileImage": "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
       "id": 232,
-      "username": "Sophia Lee",
-      "profileImageUrl": "https://images.pexels.com/photos/1542085/pexels-photo-1542085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "name": "Sophia Lee",
+      "profileImage": "https://images.pexels.com/photos/1542085/pexels-photo-1542085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
       "id": 233,
-      "username": "Liam Brown",
-      "profileImageUrl": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "name": "Liam Brown",
+      "profileImage": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     }
   ],
   "total": 18,

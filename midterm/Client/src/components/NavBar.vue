@@ -10,13 +10,15 @@ const emit = defineEmits(['user-logged-in']); // Emit event for user-logged-in
 
 // Function to handle user login when a user is selected
 const handleUserLoggedIn = (user: { id: number; name: string; profileImage: string }) => {
-  loggedInUser.value = user; // Set the selected user as the logged-in user
-  emit('user-logged-in', user); // Emit the user to the parent
+  loggedInUser.value = user; 
+  emit('user-logged-in', user);
 };
 
-// Function to log out the user
+
+// Function to log out the user and refresh the page
 const logOut = () => {
-  loggedInUser.value = null; // Clear the logged-in user
+  loggedInUser.value = null; 
+  window.location.reload(); // Refresh the page
 };
 </script>
 

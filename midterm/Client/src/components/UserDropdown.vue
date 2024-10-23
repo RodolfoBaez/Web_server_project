@@ -11,8 +11,8 @@ const emit = defineEmits(['user-logged-in']); // Emit an event for the logged-in
 const userList = computed(() => {
   return users.value.map(user => ({
     id: user.id,
-    name: user.username,
-    profileImage: user.profileImageUrl || 'path/to/default/image.png'
+    name: user.name,
+    profileImage: user.profileImage || 'path/to/default/image.png'
   }));
 });
 
@@ -24,8 +24,8 @@ const closeDropdown = (event: MouseEvent) => {
 };
 
 const selectUser = (user: { id: number, name: string, profileImage: string }) => {
-  emit('user-logged-in', user); // Emit the selected user to the Navbar
-  isDropdownOpen.value = false; // Close the dropdown after selecting a user
+  emit('user-logged-in', user); 
+  isDropdownOpen.value = false; 
 };
 
 onMounted(() => {

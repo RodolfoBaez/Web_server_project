@@ -7,7 +7,7 @@ import NavBar from './components/NavBar.vue';
 const currentUser = ref(null);
 
 // Function to handle user login when a user is selected
-const handleUserLoggedIn = (user) => {
+const handleUserLoggedIn = (user: null) => {
   currentUser.value = user; // Set the selected user as the logged-in user
 };
 </script>

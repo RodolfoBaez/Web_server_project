@@ -14,9 +14,9 @@ defineProps<{
     <div class="post-header">
       <!-- Profile image and username -->
       <div class="user-info">
-        <img :src="user.profileImageUrl" alt="User profile image" class="profile-image" />
+        <img :src="user.profileImage" alt="User profile image" class="profile-image" />
         <div>
-          <p class="post-username">{{ user.username }}</p>
+          <p class="post-username">{{ user.name }}</p>
           <p class="post-views">👁 Views: {{ post.views }}</p>
         </div>
       </div>
