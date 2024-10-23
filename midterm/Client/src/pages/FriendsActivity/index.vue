@@ -23,11 +23,11 @@ function loadMore() {
 
 // Create an array of posts with user details
 const postsWithUserDetails = computed(() => {
-  return displayedPosts.value.map((post: { userId: any }) => {
-    const user = allUsers.find((user: { id: any }) => user.id === post.userId);
+  return displayedPosts.value.map((post: Post) => {
+    const user = allUsers.find((user: User) => user.id === post.userId);
     return {
       post,
-      user: user || { username: 'Unknown', profileImageUrl: '' } 
+      user: user || { id: -1, username: 'Unknown', profileImageUrl: '' } // Ensure default user structure
     };
   });
 });
@@ -79,7 +79,7 @@ const postsWithUserDetails = computed(() => {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
 }
 
 .load-more:hover {
