@@ -2,9 +2,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-import UserDropdown from './UserDropdown.vue'; 
+import UserDropdown from './UserDropdown.vue';
 
 const isOpen = ref(false);
+const loggedInUser = ref<{ id: number; name: string; profileImage: string } | null>(null);
+
+// Function to handle user login when a user is selected
+const handleUserLoggedIn = (user: { id: number; name: string; profileImage: string }) => {
+  loggedInUser.value = user; // Set the selected user as the logged-in user
+};
+
+// Function to log out the user
+const logOut = () => {
+  loggedInUser.value = null; // Clear the logged-in user
+};
 </script>
 
 <template>
@@ -39,8 +50,20 @@ const isOpen = ref(false);
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <div class="buttons">
-              <UserDropdown />
+            <div class="buttons" v-if="loggedInUser">
+              <img :src="loggedInUser.profileImage" alt="User profile" class="profile-image" />
+              <span class="username">{{ loggedInUser.name }}</span>
+
+                <!-- Display logout button and user profile image when logged in -->
+              <button class="button is-light" @click="logOut">
+                Log Out
+              </button>
+
+            </div>
+            
+            <div v-else>
+              <!-- Display the UserDropdown when no user is logged in -->
+              <UserDropdown @user-logged-in="handleUserLoggedIn" />
             </div>
           </div>
         </div>
@@ -53,5 +76,12 @@ const isOpen = ref(false);
 .router-link-active {
   font-weight: bold;
   border-bottom: 2px solid blue;
+}
+
+.profile-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
 }
 </style>

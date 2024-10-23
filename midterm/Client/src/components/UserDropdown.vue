@@ -1,23 +1,21 @@
+<!-- src/components/UserDropdown.vue -->
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount, defineEmits } from 'vue';
 import { RouterLink } from 'vue-router';
 import { getAll as getAllUsers, type User } from '@/models/users';  
 
 const isDropdownOpen = ref(false);
-
-// Fetch user data
 const users = ref<User[]>(getAllUsers().data);
+const emit = defineEmits(['user-logged-in']); // Emit an event for the logged-in user
 
-// Computed property to handle user display in dropdown
 const userList = computed(() => {
   return users.value.map(user => ({
     id: user.id,
     name: user.username,
-    profileImage: user.profileImageUrl || 'path/to/default/image.png' // Use a default image if none is available
+    profileImage: user.profileImageUrl || 'path/to/default/image.png'
   }));
 });
 
-// Close dropdown if clicked outside
 const closeDropdown = (event: MouseEvent) => {
   const target = event.target as HTMLElement;
   if (!target.closest('.dropdown')) {
@@ -25,7 +23,11 @@ const closeDropdown = (event: MouseEvent) => {
   }
 };
 
-// Listen for clicks outside of dropdown
+const selectUser = (user: { id: number, name: string, profileImage: string }) => {
+  emit('user-logged-in', user); // Emit the selected user to the Navbar
+  isDropdownOpen.value = false; // Close the dropdown after selecting a user
+};
+
 onMounted(() => {
   window.addEventListener('click', closeDropdown);
 });
@@ -44,40 +46,21 @@ onBeforeUnmount(() => {
     </div>
     <div class="dropdown-menu" :class="{ 'is-active': isDropdownOpen }">
       <div class="dropdown-content">
-        <RouterLink
+        <div
           v-for="user in userList"
           :key="user.id"
-          :to="`/UserProfile/${user.id}`"  
           class="dropdown-item"
+          @click="selectUser(user)"  
         >
           <img :src="user.profileImage" alt="User profile" class="profile-image" />
           <span>{{ user.name }}</span>
-        </RouterLink>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  right: 0;
-  top: -10px;
-  background-color: white;
-  border: 1px solid #ccc;
-  z-index: 1000;
-  margin-top: 3rem;
-}
-
-.dropdown-content {
-  max-height: 200px;
-  overflow-y: auto;
-}
-
 .dropdown-item {
   display: flex;
   align-items: center;
