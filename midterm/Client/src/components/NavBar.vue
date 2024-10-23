@@ -28,7 +28,6 @@ const isOpen = ref(false)
 
       <div class="navbar-menu" :class="{ 'is-active': isOpen }">
         <div class="navbar-start">
-          <RouterLink to="/" class="navbar-item">Home</RouterLink>
           <RouterLink to="/Activity" class="navbar-item">Activity</RouterLink>
           <RouterLink to="/FriendsActivity" class="navbar-item">Friends Activity</RouterLink>
           <RouterLink to="/Statistics" class="navbar-item">Statistics</RouterLink>

@@ -22,14 +22,11 @@ declare module 'vue-router/auto-routes' {
     '/Admin/': RouteRecordInfo<'/Admin/', '/Admin', Record<never, never>, Record<never, never>>,
     '/Contact/': RouteRecordInfo<'/Contact/', '/Contact', Record<never, never>, Record<never, never>>,
     '/FriendsActivity/': RouteRecordInfo<'/FriendsActivity/', '/FriendsActivity', Record<never, never>, Record<never, never>>,
-    '/Index': RouteRecordInfo<'/Index', '/Index', Record<never, never>, Record<never, never>>,
     '/Login/': RouteRecordInfo<'/Login/', '/Login', Record<never, never>, Record<never, never>>,
+    '/Products/': RouteRecordInfo<'/Products/', '/Products', Record<never, never>, Record<never, never>>,
     '/Search/': RouteRecordInfo<'/Search/', '/Search', Record<never, never>, Record<never, never>>,
     '/Signup/': RouteRecordInfo<'/Signup/', '/Signup', Record<never, never>, Record<never, never>>,
-    '/Statistics/': RouteRecordInfo<'/Statistics/', '/Statistics', Record<never, never>, Record<never, never>>,
-  }
-}
-/': RouteRecordInfo<'/SignUp/', '/SignUp', Record<never, never>, Record<never, never>>,
+    '/SignUp/': RouteRecordInfo<'/SignUp/', '/SignUp', Record<never, never>, Record<never, never>>,
     '/Statistics/': RouteRecordInfo<'/Statistics/', '/Statistics', Record<never, never>, Record<never, never>>,
   }
 }
