@@ -8,9 +8,7 @@ const allPosts = getAllPosts().data
 const allUsers = getAllUsers().data;
 
 const displayedPosts = ref<Post[]>([])
-
 const sortedPosts = allPosts.sort((a: Post, b: Post) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
-
 displayedPosts.value = sortedPosts.slice(0, 4)
 
 function loadMore() {

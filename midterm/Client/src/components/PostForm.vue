@@ -21,8 +21,8 @@ const formData = ref({
   userId: props.currentUser ? props.currentUser.id : null, 
   imageUrl: '',
   timestamp: '',
-  exerciseType: '',  
-  duration: 0,       
+  exerciseType: '',  // New field for exercise type
+  duration: 0,       // New field for duration
 });
 
 const tagsInput = ref('');
@@ -34,6 +34,7 @@ const exercises = ref([
   { id: 3, name: 'Swimming' },
   { id: 4, name: 'Weightlifting' },
   { id: 5, name: 'Yoga' },
+  // Add more exercises as needed
 ]);
 
 const closeForm = () => {
@@ -87,6 +88,7 @@ const submitForm = () => {
             </select>
           </div>
   
+          <!-- Duration Input -->
           <div class="form-group">
             <label for="duration">Duration (in minutes):</label>
             <input type="number" v-model="formData.duration" min="0" required />

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Post } from '@/models/posts'
-import type { User } from '@/models/users'
+import type { Post } from '@/models/posts';
+import type { User } from '@/models/users';
 
 defineProps<{
-  post: Post,
-  user: User
-}>()
+  post: Post;
+  user: User;
+}>();
 
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -14,10 +14,9 @@ const formatDate = (dateString: string) => {
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-  }
-  return new Date(dateString).toLocaleDateString(undefined, options)
-}
-
+  };
+  return new Date(dateString).toLocaleDateString(undefined, options);
+};
 </script>
 
 <template>
@@ -31,6 +30,8 @@ const formatDate = (dateString: string) => {
           <p class="post-date">{{ formatDate(post.timestamp) }}</p>
         </div>
       </div>
+      <button v-if="user.id === post.userId" @click="$emit('delete')" class="delete-btn">🗑️</button>
+
     </div>
 
     <h3>{{ post.title }}</h3>
@@ -41,7 +42,7 @@ const formatDate = (dateString: string) => {
 
     <div class="post-exercise-info">
       <p class="exercise-type">🏋️‍♂️ Exercise Type: {{ post.exerciseType }}</p>
-      <p class="duration">⏳ Duration: {{ post.duration }} Minutes </p>
+      <p class="duration">⏳ Duration: {{ post.duration }} Minutes</p>
     </div>
 
     <div class="post-tags">
@@ -79,10 +80,25 @@ const formatDate = (dateString: string) => {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
 
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  margin-bottom: 16px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #d9534f;
+  cursor: pointer;
+  font-size: 1.5rem; 
+  margin-right: 12px; 
+}
+
 .user-info {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 .profile-image {
@@ -164,6 +180,7 @@ h3 {
 .reaction-icon {
   margin-right: 4px;
 }
+
 .post-exercise-info {
   margin: 12px 0;
   color: #374151; 
@@ -175,7 +192,6 @@ h3 {
   color: #6b7280; 
   margin-bottom: 4px;
 }
-
 
 @media (max-width: 600px) {
   .post-card {

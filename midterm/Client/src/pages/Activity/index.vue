@@ -24,6 +24,10 @@ const handlePostSubmission = (postData: Post) => {
   allPosts.value.push(postData);
   showForm.value = false;
 };
+
+const deletePost = (postId: number) => {
+  allPosts.value = allPosts.value.filter((post: Post) => post.id !== postId);
+};
 </script>
 
 <template>
@@ -50,6 +54,7 @@ const handlePostSubmission = (postData: Post) => {
         :key="index"
         :post="post"
         :user="currentUser"
+        @delete="deletePost(post.id)"
       />
     </div>
 
@@ -104,6 +109,4 @@ const handlePostSubmission = (postData: Post) => {
 .create-post-btn:hover {
   background-color: #45a049;
 }
-
-
 </style>
