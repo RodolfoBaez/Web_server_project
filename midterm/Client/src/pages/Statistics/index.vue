@@ -9,8 +9,14 @@ import { usePostsStore } from '@/store/posts';
 const props = defineProps<{ currentUser: User }>();
 const postsStore = usePostsStore();
 
-const allUsers = computed(() => getAllUsers().data); 
-const allPosts = computed(() => postsStore.getPosts()); 
+const allUsers = computed(() => {
+  return getAllUsers().data.filter(user => user.id !== 1);
+}); 
+
+const allPosts = computed(() => {
+  return postsStore.getPosts().filter(post => post.userId !== 1);
+});
+
 
 //getting current user post
 const userPosts = computed(() => {
@@ -26,7 +32,7 @@ const workoutDays = computed(() => {
 });
 
 const workoutDaysChartData = computed(() => {
-  const otherUsers = allUsers.value.filter((user: User) => user.id !== props.currentUser.id);
+  const otherUsers = allUsers.value.filter((user: User) => user.id !== props.currentUser.id && user.id !== 1);
 
   const otherUsersData = otherUsers.map((user: User) => {
     const userPostsForUser = allPosts.value.filter((post) => post.userId === user.id);
@@ -48,6 +54,7 @@ const workoutDaysChartData = computed(() => {
     ],
   };
 });
+
 
 const hoursOverDays = computed(() => {
   const data: { day: string; hours: number }[] = [];
