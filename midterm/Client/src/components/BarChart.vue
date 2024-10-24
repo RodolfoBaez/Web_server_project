@@ -17,7 +17,6 @@ import {
   LinearScale,
 } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 const props = defineProps({

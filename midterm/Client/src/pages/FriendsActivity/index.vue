@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-side-effects-in-computed-properties -->
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { getAll as getAllPosts, type Post } from '@/models/posts'; 
@@ -9,13 +10,10 @@ const postsStore = usePostsStore();
 const allPosts = postsStore.getPosts(); 
 const allUsers = getAllUsers().data;
 
-// Current user prop (assume you are passing it to this component)
-const props = defineProps({
-  currentUser: {
-    type: Object,
-    required: true,
-  },
-});
+// Current user prop 
+const props = defineProps<{
+  currentUser: User;
+}>();
 
 // Initialize displayed posts
 const displayedPosts = ref<Post[]>([]);
