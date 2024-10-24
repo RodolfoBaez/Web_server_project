@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { usePostsStore } from '@/store/posts'; // Import the posts store
@@ -18,8 +19,6 @@ const userPosts = computed(() => {
 });
 
 const showForm = ref(false);
-
-// Track the created post for immediate display
 const createdPost = ref<Post | null>(null); 
 
 const handlePostSubmission = (postData: Post) => {

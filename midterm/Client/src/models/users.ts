@@ -1,11 +1,18 @@
 import data from '../data/users.json'; 
 import type { DataListEnvelope } from './dataEnvelope'; 
 
+// In-memory representation of users
+let users = [...data.items]; 
+
 export function getAll(): DataListEnvelope<User> {
   return {
-    data: data.items,  
-    total: data.total, 
+    data: users,  
+    total: users.length, 
   };
+}
+
+export function deleteUser(userId: number): void {
+  users = users.filter(user => user.id !== userId);
 }
 
 export interface User {

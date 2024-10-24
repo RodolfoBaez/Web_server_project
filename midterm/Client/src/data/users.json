@@ -19,9 +19,15 @@
       "id": 233,
       "name": "Liam Brown",
       "profileImage": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 1,
+      "name": "Admin User",
+      "profileImage": "https://images.pexels.com/photos/207210/pexels-photo-207210.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "role": "admin"
     }
   ],
-  "total": 18,
+  "total": 19,
   "skip": 0,
   "limit": 30
 }

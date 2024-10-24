@@ -12,12 +12,12 @@ const handleUserLoggedIn = (user: null) => {
 
 <template>
   <header>
-    <NavBar @user-logged-in="handleUserLoggedIn" /> 
+    <NavBar @user-logged-in="handleUserLoggedIn" />
   </header>
 
   <div class="container">
     <template v-if="currentUser">
-      <RouterView :currentUser="currentUser" /> 
+      <RouterView :currentUser="currentUser" /> <!-- Pass currentUser as a prop -->
     </template>
     <template v-else>
       <div class="login-prompt">
