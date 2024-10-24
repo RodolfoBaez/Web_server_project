@@ -2,39 +2,52 @@
 import type { Post } from '@/models/posts'
 import type { User } from '@/models/users'
 
-// Props to pass in post data and user data
 defineProps<{
   post: Post,
   user: User
 }>()
+
+const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }
+  return new Date(dateString).toLocaleDateString(undefined, options)
+}
+
 </script>
 
 <template>
   <div class="post-card">
     <div class="post-header">
-      <!-- Profile image and username -->
       <div class="user-info">
         <img :src="user.profileImage" alt="User profile image" class="profile-image" />
         <div>
           <p class="post-username">{{ user.name }}</p>
           <p class="post-views">👁 Views: {{ post.views }}</p>
+          <p class="post-date">{{ formatDate(post.timestamp) }}</p>
         </div>
       </div>
     </div>
-    
-    <!-- Post title and content -->
+
     <h3>{{ post.title }}</h3>
     <div class="post-body">
       <p>{{ post.body }}</p>
       <img v-if="post.imageUrl" :src="post.imageUrl" alt="Post image" class="post-image" />
     </div>
 
-    <!-- Post tags -->
+    <div class="post-exercise-info">
+      <p class="exercise-type">🏋️‍♂️ Exercise Type: {{ post.exerciseType }}</p>
+      <p class="duration">⏳ Duration: {{ post.duration }} Minutes </p>
+    </div>
+
     <div class="post-tags">
       <span v-for="(tag, index) in post.tags" :key="index" class="tag">{{ tag }}</span>
     </div>
 
-    <!-- Reactions -->
     <div class="post-reactions">
       <div class="reaction">
         <span class="reaction-icon">👍</span> {{ post.reactions.likes }}
@@ -47,16 +60,8 @@ defineProps<{
 </template>
 
 <style scoped>
-/* Container for the cards */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; 
-}
-
-/* Post card design */
 .post-card {
-  background-color: white;
+  background-color: #f9fafb;
   border-radius: 12px;
   padding: 20px;
   margin: 16px;
@@ -74,7 +79,6 @@ defineProps<{
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
 
-/* User info - Profile image and username */
 .user-info {
   display: flex;
   align-items: center;
@@ -100,14 +104,19 @@ defineProps<{
   color: #9ca3af;
 }
 
-/* Post header styling */
+.post-date {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
 h3 {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 12px;
+  color: #1f2937; 
 }
 
-/* Body content */
 .post-body {
   flex-grow: 1;
   margin: 16px 0;
@@ -123,7 +132,6 @@ h3 {
   margin-top: 12px;
 }
 
-/* Post tags */
 .post-tags {
   display: flex;
   flex-wrap: wrap;
@@ -140,7 +148,6 @@ h3 {
   margin-bottom: 8px;
 }
 
-/* Reactions */
 .post-reactions {
   display: flex;
   justify-content: space-between;
@@ -157,8 +164,19 @@ h3 {
 .reaction-icon {
   margin-right: 4px;
 }
+.post-exercise-info {
+  margin: 12px 0;
+  color: #374151; 
+}
 
-/* Media query for mobile responsiveness */
+.exercise-type,
+.duration {
+  font-size: 0.875rem; 
+  color: #6b7280; 
+  margin-bottom: 4px;
+}
+
+
 @media (max-width: 600px) {
   .post-card {
     width: 100%; 

@@ -11,7 +11,10 @@
       },
       "views": 1000,
       "userId": 230,
-      "imageUrl": "https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-09-10T14:23:00",
+      "exerciseType": "hiking",
+      "duration": 180
     },
     {
       "id": 31,
@@ -24,7 +27,10 @@
       },
       "views": 600,
       "userId": 232,
-      "imageUrl": "https://images.pexels.com/photos/868097/pexels-photo-868097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/868097/pexels-photo-868097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-09-15T07:45:00",
+      "exerciseType": "running",
+      "duration": 45
     },
     {
       "id": 32,
@@ -37,7 +43,10 @@
       },
       "views": 750,
       "userId": 231,
-      "imageUrl": "https://images.pexels.com/photos/8436595/pexels-photo-8436595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/8436595/pexels-photo-8436595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-09-25T18:30:00",
+      "exerciseType": "yoga",
+      "duration": 60
     },
     {
       "id": 33,
@@ -50,7 +59,10 @@
       },
       "views": 1500,
       "userId": 233,
-      "imageUrl": "https://images.pexels.com/photos/71104/utah-mountain-biking-bike-biking-71104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/71104/utah-mountain-biking-bike-biking-71104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-09-30T08:00:00",
+      "exerciseType": "marathon",
+      "duration": 240
     },
     {
       "id": 34,
@@ -63,7 +75,10 @@
       },
       "views": 900,
       "userId": 231,
-      "imageUrl": "https://images.pexels.com/photos/6456178/pexels-photo-6456178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/6456178/pexels-photo-6456178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-10-02T15:45:00",
+      "exerciseType": "rock climbing",
+      "duration": 120
     },
     {
       "id": 35,
@@ -76,7 +91,10 @@
       },
       "views": 1200,
       "userId": 230,
-      "imageUrl": "https://images.pexels.com/photos/13621287/pexels-photo-13621287.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/13621287/pexels-photo-13621287.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-10-05T10:30:00",
+      "exerciseType": "strength training",
+      "duration": 60
     },
     {
       "id": 36,
@@ -89,7 +107,10 @@
       },
       "views": 850,
       "userId": 231,
-      "imageUrl": "https://images.pexels.com/photos/4662355/pexels-photo-4662355.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/4662355/pexels-photo-4662355.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-10-10T17:00:00",
+      "exerciseType": "group workout",
+      "duration": 90
     },
     {
       "id": 37,
@@ -102,7 +123,10 @@
       },
       "views": 700,
       "userId": 233,
-      "imageUrl": "https://images.pexels.com/photos/6740305/pexels-photo-6740305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/6740305/pexels-photo-6740305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-10-12T12:00:00",
+      "exerciseType": "pushups",
+      "duration": 30
     },
     {
       "id": 38,
@@ -115,7 +139,10 @@
       },
       "views": 1100,
       "userId": 232,
-      "imageUrl": "https://images.pexels.com/photos/2149771/pexels-photo-2149771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/2149771/pexels-photo-2149771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-10-15T14:15:00",
+      "exerciseType": "strength training",
+      "duration": 60
     },
     {
       "id": 39,
@@ -128,7 +155,10 @@
       },
       "views": 600,
       "userId": 231,
-      "imageUrl": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-10-20T09:00:00",
+      "exerciseType": "canoeing",
+      "duration": 120
     },
     {
       "id": 40,
@@ -141,10 +171,13 @@
       },
       "views": 800,
       "userId": 230,
-      "imageUrl": "https://images.pexels.com/photos/6456178/pexels-photo-6456178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      "imageUrl": "https://images.pexels.com/photos/6456178/pexels-photo-6456178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "timestamp": "2024-10-22T16:45:00",
+      "exerciseType": "boxing",
+      "duration": 60
     }
   ],
   "total": 12,
   "skip": 0,
-  "limit": 30
+  "limit": 12
 }

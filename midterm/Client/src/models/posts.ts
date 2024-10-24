@@ -22,4 +22,7 @@ export interface Post {
   views: number;
   userId: number;
   imageUrl: string;
+  timestamp: string;
+  exerciseType: string; 
+  duration: number; 
 }

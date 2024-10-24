@@ -1,12 +1,10 @@
-<!-- src/components/UserDropdown.vue -->
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount, defineEmits } from 'vue';
-import { RouterLink } from 'vue-router';
 import { getAll as getAllUsers, type User } from '@/models/users';  
 
 const isDropdownOpen = ref(false);
 const users = ref<User[]>(getAllUsers().data);
-const emit = defineEmits(['user-logged-in']); // Emit an event for the logged-in user
+const emit = defineEmits(['user-logged-in']);
 
 const userList = computed(() => {
   return users.value.map(user => ({

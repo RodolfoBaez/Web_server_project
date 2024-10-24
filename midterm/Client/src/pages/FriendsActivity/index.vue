@@ -2,26 +2,23 @@
 import { ref, computed } from 'vue'
 import { getAll as getAllPosts, type Post } from '@/models/posts' 
 import { getAll as getAllUsers, type User } from '@/models/users' 
-import PostCard from '@/components/PostCard.vue'
+import PostCard from '@/components/PostCard.vue' 
 
-// Retrieve all posts and users
 const allPosts = getAllPosts().data
 const allUsers = getAllUsers().data;
 
-// State to manage displayed posts
 const displayedPosts = ref<Post[]>([])
 
-// Load the first 4 posts initially
-displayedPosts.value = allPosts.slice(0, 4)
+const sortedPosts = allPosts.sort((a: Post, b: Post) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
 
-// Function to load more posts
+displayedPosts.value = sortedPosts.slice(0, 4)
+
 function loadMore() {
   const currentLength = displayedPosts.value.length
-  const nextPosts = allPosts.slice(currentLength, currentLength + 4)
+  const nextPosts = sortedPosts.slice(currentLength, currentLength + 4)
   displayedPosts.value = [...displayedPosts.value, ...nextPosts]
 }
 
-// Create an array of posts with user details
 const postsWithUserDetails = computed(() => {
   return displayedPosts.value.map((post: Post) => {
     const user = allUsers.find((user: User) => user.id === post.userId);
@@ -42,7 +39,7 @@ const postsWithUserDetails = computed(() => {
       :user="item.user"
     />
   </div>
-  <div class="load-more-container" v-if="displayedPosts.length < allPosts.length">
+  <div class="load-more-container" v-if="displayedPosts.length < sortedPosts.length">
     <button class="load-more" @click="loadMore">
       Load More
     </button>
