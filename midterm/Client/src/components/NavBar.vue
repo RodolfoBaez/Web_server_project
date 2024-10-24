@@ -18,7 +18,7 @@ const handleUserLoggedIn = (user: { id: number; name: string; profileImage: stri
 // Function to log out the user and refresh the page
 const logOut = () => {
   loggedInUser.value = null; 
-  window.location.reload(); // Refresh the page
+  window.location.reload(); 
 };
 </script>
 

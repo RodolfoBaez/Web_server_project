@@ -4,7 +4,8 @@ import type { User } from '@/models/users';
 
 defineProps<{
   post: Post;
-  user: User;
+  user: User; 
+  currentUser: User; 
 }>();
 
 const formatDate = (dateString: string) => {
@@ -30,8 +31,8 @@ const formatDate = (dateString: string) => {
           <p class="post-date">{{ formatDate(post.timestamp) }}</p>
         </div>
       </div>
-      <button v-if="user.id === post.userId" @click="$emit('delete')" class="delete-btn">🗑️</button>
-
+      <!-- Show delete button only if the current user is the post owner -->
+      <button v-if="currentUser.id === post.userId" @click="$emit('delete')" class="delete-btn">🗑️</button>
     </div>
 
     <h3>{{ post.title }}</h3>

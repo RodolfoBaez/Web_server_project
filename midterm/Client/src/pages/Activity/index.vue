@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { getAll as getAllPosts, type Post } from '@/models/posts';
+import { usePostsStore } from '@/store/posts'; // Import the posts store
 import PostCard from '@/components/PostCard.vue';
 import PostForm from '@/components/PostForm.vue';
+import type { Post } from '@/models/posts';
 
 const props = defineProps(['currentUser']);
-const allPosts = ref(getAllPosts().data); 
+const postsStore = usePostsStore(); // Get access to the posts store
 
 const userPosts = computed(() => {
   if (props.currentUser) {
-    return allPosts.value
+    return postsStore.getPosts()
       .filter((post: Post) => post.userId === props.currentUser.id)
       .sort((a: Post, b: Post) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
   }
@@ -17,22 +18,23 @@ const userPosts = computed(() => {
 });
 
 const showForm = ref(false);
+
+// Track the created post for immediate display
 const createdPost = ref<Post | null>(null); 
 
 const handlePostSubmission = (postData: Post) => {
   createdPost.value = postData;
-  allPosts.value.push(postData);
+  postsStore.addPost(postData); 
   showForm.value = false;
 };
 
 const deletePost = (postId: number) => {
-  allPosts.value = allPosts.value.filter((post: Post) => post.id !== postId);
+  postsStore.deletePost(postId); 
 };
 </script>
 
 <template>
   <div class="activity">
-
     <div v-if="currentUser" class="user-info">
       <img :src="currentUser.profileImage" alt="User profile" class="profile-image" />
       <h2>{{ currentUser.name }}</h2>
@@ -48,19 +50,24 @@ const deletePost = (postId: number) => {
       @submit="handlePostSubmission"
     />
 
-    <div class="activity-shelf" v-if="currentUser && userPosts.length">
-      <PostCard
-        v-for="(post, index) in userPosts"
-        :key="index"
-        :post="post"
-        :user="currentUser"
-        @delete="deletePost(post.id)"
-      />
+    <div class="activity-shelf">
+      <template v-if="userPosts.length">
+        <PostCard
+          v-for="(post, index) in userPosts"
+          :key="index"
+          :post="post"
+          :user="currentUser"  
+          :currentUser="currentUser" 
+          @delete="deletePost(post.id)"
+        />
+      </template>
+      <template v-else>
+        <p>No posts found for this user.</p>
+      </template>
     </div>
 
-    <div v-else>
-      <p v-if="!currentUser">Please select a user to see their activity.</p>
-      <p v-else>No posts found for this user.</p>
+    <div v-if="!currentUser">
+      <p>Please select a user to see their activity.</p>
     </div>
   </div>
 </template>
@@ -70,8 +77,7 @@ const deletePost = (postId: number) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .profile-image {

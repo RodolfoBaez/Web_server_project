@@ -1,43 +1,69 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { getAll as getAllPosts, type Post } from '@/models/posts' 
-import { getAll as getAllUsers, type User } from '@/models/users' 
-import PostCard from '@/components/PostCard.vue' 
+import { ref, computed } from 'vue';
+import { getAll as getAllPosts, type Post } from '@/models/posts'; 
+import { getAll as getAllUsers, type User } from '@/models/users'; 
+import PostCard from '@/components/PostCard.vue'; 
+import { usePostsStore } from '@/store/posts'; 
 
-const allPosts = getAllPosts().data
+const postsStore = usePostsStore(); 
+const allPosts = postsStore.getPosts(); 
 const allUsers = getAllUsers().data;
 
-const displayedPosts = ref<Post[]>([])
-const sortedPosts = allPosts.sort((a: Post, b: Post) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
-displayedPosts.value = sortedPosts.slice(0, 4)
-
-function loadMore() {
-  const currentLength = displayedPosts.value.length
-  const nextPosts = sortedPosts.slice(currentLength, currentLength + 4)
-  displayedPosts.value = [...displayedPosts.value, ...nextPosts]
-}
-
-const postsWithUserDetails = computed(() => {
-  return displayedPosts.value.map((post: Post) => {
-    const user = allUsers.find((user: User) => user.id === post.userId);
-    return {
-      post,
-      user: user || { id: -1, name: 'Unknown', profileImage: '' } 
-    };
-  });
+// Current user prop (assume you are passing it to this component)
+const props = defineProps({
+  currentUser: {
+    type: Object,
+    required: true,
+  },
 });
+
+// Initialize displayed posts
+const displayedPosts = ref<Post[]>([]);
+const postsPerLoad = 4;
+
+const sortedPosts = computed(() => {
+  return allPosts.sort((a: Post, b: Post) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+});
+
+// This computed property returns all posts, including the current user's posts
+const allUserPosts = computed(() => {
+  return sortedPosts.value; 
+});
+
+// Function to load initial posts
+const loadInitialPosts = () => {
+  const initialPosts = allUserPosts.value.slice(0, postsPerLoad);
+  displayedPosts.value = initialPosts;
+};
+
+// Function to load more posts
+const loadMore = () => {
+  const currentLength = displayedPosts.value.length;
+  const nextPosts = allUserPosts.value.slice(currentLength, currentLength + postsPerLoad);
+  displayedPosts.value = [...displayedPosts.value, ...nextPosts];
+};
+
+// Handle post deletion
+const deletePost = (postId: number) => {
+  postsStore.deletePost(postId); 
+  displayedPosts.value = displayedPosts.value.filter(post => post.id !== postId);
+};
+
+loadInitialPosts();
 </script>
 
 <template>
   <div class="activity-shelf">
     <PostCard
-      v-for="(item, index) in postsWithUserDetails"
+      v-for="(post, index) in displayedPosts"
       :key="index"
-      :post="item.post"
-      :user="item.user"
+      :post="post"
+      :user="allUsers.find(user => user.id === post.userId) || { id: -1, name: 'Unknown', profileImage: '' }" 
+      :currentUser="props.currentUser" 
+      @delete="deletePost(post.id)"
     />
   </div>
-  <div class="load-more-container" v-if="displayedPosts.length < sortedPosts.length">
+  <div class="load-more-container" v-if="displayedPosts.length < allUserPosts.length">
     <button class="load-more" @click="loadMore">
       Load More
     </button>

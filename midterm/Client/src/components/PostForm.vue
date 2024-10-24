@@ -21,20 +21,18 @@ const formData = ref({
   userId: props.currentUser ? props.currentUser.id : null, 
   imageUrl: '',
   timestamp: '',
-  exerciseType: '',  // New field for exercise type
-  duration: 0,       // New field for duration
+  exerciseType: '',  
+  duration: 0,       
 });
 
 const tagsInput = ref('');
 
-// Array of exercises for selection
 const exercises = ref([
   { id: 1, name: 'Running' },
   { id: 2, name: 'Cycling' },
   { id: 3, name: 'Swimming' },
   { id: 4, name: 'Weightlifting' },
   { id: 5, name: 'Yoga' },
-  // Add more exercises as needed
 ]);
 
 const closeForm = () => {
