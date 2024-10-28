@@ -15,5 +15,6 @@
   "devDependencies": {
     "@types/chart.js": "^2.9.41",
     "nodemon": "^3.1.7"
+    
   }
 }
