@@ -2,7 +2,6 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import BarChart from '@/components/BarChart.vue';
-import LineChart from '@/components/LineChart.vue';
 import { getAll as getAllUsers, type User } from '@/models/users';
 import { usePostsStore } from '@/store/posts';
 
@@ -56,20 +55,6 @@ const workoutDaysChartData = computed(() => {
 });
 
 
-const hoursOverDays = computed(() => {
-  const data: { day: string; hours: number }[] = [];
-  userPosts.value.forEach(post => {
-    const date = post.timestamp.split('T')[0];
-    const existingDay = data.find(d => d.day === date);
-    if (existingDay) {
-      existingDay.hours += post.duration || 0;
-    } else {
-      data.push({ day: date, hours: post.duration || 0 });
-    }
-  });
-  return data.sort((a, b) => new Date(a.day).getTime() - new Date(b.day).getTime());
-});
-
 </script>
 
 <template>
@@ -77,7 +62,6 @@ const hoursOverDays = computed(() => {
     <h1>Your Statistics</h1>
 
     <BarChart :data="workoutDaysChartData" />    
-    <LineChart :data="hoursOverDays" />
 
     <div class="stat-item">
       <h2>Workout Days:</h2>
