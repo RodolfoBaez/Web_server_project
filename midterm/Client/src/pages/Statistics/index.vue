@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, watch } from 'vue';
-import BarChart from '@/components/BarChart.vue';
+import { computed } from 'vue';
 import { getAll as getAllUsers, type User } from '@/models/users';
 import { usePostsStore } from '@/store/posts';
 
@@ -16,8 +15,7 @@ const allPosts = computed(() => {
   return postsStore.getPosts().filter(post => post.userId !== 1);
 });
 
-
-//getting current user post
+// Getting current user posts
 const userPosts = computed(() => {
   if (props.currentUser) {
     return allPosts.value.filter((post) => post.userId === props.currentUser.id);
@@ -25,11 +23,42 @@ const userPosts = computed(() => {
   return [];
 });
 
+// Workout Days
 const workoutDays = computed(() => {
   const uniqueDates = new Set(userPosts.value.map(post => post.timestamp.split('T')[0]));
   return uniqueDates.size;
 });
 
+// Total Workouts
+const totalWorkouts = computed(() => {
+  return userPosts.value.length;
+});
+
+// Average Workout Duration
+const averageDuration = computed(() => {
+  const durations = userPosts.value.map(post => post.duration); // Ensure your post model includes duration
+  const totalDuration = durations.reduce((sum, duration) => sum + duration, 0);
+  return durations.length > 0 ? (totalDuration / durations.length).toFixed(2) : 0;
+});
+
+// Most Active Day
+const mostActiveDay = computed(() => {
+  const dayCount = userPosts.value.reduce((acc, post) => {
+    const date = post.timestamp.split('T')[0];
+    acc[date] = (acc[date] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const maxDay = Object.keys(dayCount).reduce((a, b) => dayCount[a] > dayCount[b] ? a : b);
+  return { day: maxDay, count: dayCount[maxDay] || 0 };
+});
+
+// Total Reactions (if applicable)
+const totalReactions = computed(() => {
+  return userPosts.value.reduce((total, post) => total + (post.reactions ? post.reactions.likes : 0), 0);
+});
+
+// Workout Days Chart Data
 const workoutDaysChartData = computed(() => {
   const otherUsers = allUsers.value.filter((user: User) => user.id !== props.currentUser.id && user.id !== 1);
 
@@ -53,19 +82,35 @@ const workoutDaysChartData = computed(() => {
     ],
   };
 });
-
-
 </script>
 
 <template>
   <div class="statistics-page">
     <h1>Your Statistics</h1>
 
-    <BarChart :data="workoutDaysChartData" />    
-
     <div class="stat-item">
       <h2>Workout Days:</h2>
       <p>{{ workoutDays }} days</p>
+    </div>
+
+    <div class="stat-item">
+      <h2>Total Workouts:</h2>
+      <p>{{ totalWorkouts }} workouts</p>
+    </div>
+
+    <div class="stat-item">
+      <h2>Average Workout Duration:</h2>
+      <p>{{ averageDuration }} minutes</p>
+    </div>
+
+    <div class="stat-item">
+      <h2>Most Active Day:</h2>
+      <p>{{ mostActiveDay.day }} ({{ mostActiveDay.count }} workouts)</p>
+    </div>
+
+    <div class="stat-item">
+      <h2>Total Reactions:</h2>
+      <p>{{ totalReactions }} reactions</p>
     </div>
   </div>
 </template>
@@ -77,7 +122,7 @@ const workoutDaysChartData = computed(() => {
   padding: 20px;
 }
 
-.user-posts {
-  margin-top: 30px;
+.stat-item {
+  margin-top: 20px;
 }
 </style>
