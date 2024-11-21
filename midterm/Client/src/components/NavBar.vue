@@ -6,7 +6,7 @@ import { defineEmits } from 'vue';
 
 const isOpen = ref(false);
 const loggedInUser = ref<{ id: number; name: string; profileImage: string } | null>(null);
-const emit = defineEmits(['user-logged-in']); // Emit event for user-logged-in
+const emit = defineEmits(['user-logged-in', 'user-logged-out']); // Add user-logged-out event
 
 // Function to handle user login when a user is selected
 const handleUserLoggedIn = (user: { id: number; name: string; profileImage: string }) => {
@@ -14,11 +14,10 @@ const handleUserLoggedIn = (user: { id: number; name: string; profileImage: stri
   emit('user-logged-in', user);
 };
 
-
-// Function to log out the user and refresh the page
+// Function to log out the user
 const logOut = () => {
   loggedInUser.value = null; 
-  window.location.reload(); 
+  emit('user-logged-out'); // Emit the user-logged-out event
 };
 </script>
 
@@ -58,7 +57,7 @@ const logOut = () => {
               <img :src="loggedInUser.profileImage" alt="User profile" class="profile-image" />
               <span class="username">{{ loggedInUser.name }}</span>
 
-              <!-- Display logout button and user profile image when logged in -->
+              <!-- Display logout button when logged in -->
               <button class="button is-light" @click="logOut">
                 Log Out
               </button>

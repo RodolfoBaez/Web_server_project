@@ -3,16 +3,24 @@ import { ref } from 'vue';
 import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue';
 
-const currentUser = ref(null);
+// Correctly define the type of currentUser to allow null or a user object
+const currentUser = ref<{ id: number; name: string; profileImage: string } | null>(null);
 
-const handleUserLoggedIn = (user: null) => {
-  currentUser.value = user; 
+// Handle user login
+const handleUserLoggedIn = (user: { id: number; name: string; profileImage: string } | null) => {
+  currentUser.value = user;
+};
+
+// Handle user logout
+const handleUserLoggedOut = () => {
+  currentUser.value = null; // Clear the current user state
 };
 </script>
 
 <template>
   <header>
-    <NavBar @user-logged-in="handleUserLoggedIn" />
+    <!-- Listen for user-logged-out event -->
+    <NavBar @user-logged-in="handleUserLoggedIn" @user-logged-out="handleUserLoggedOut" />
   </header>
 
   <div class="container">
