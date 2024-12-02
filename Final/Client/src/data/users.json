@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "id": 230,
+      "name": "Mia Turner",
+      "profileImage": "https://images.pexels.com/photos/3786191/pexels-photo-3786191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 231,
+      "name": "John Smith",
+      "profileImage": "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 232,
+      "name": "Sophia Lee",
+      "profileImage": "https://images.pexels.com/photos/1542085/pexels-photo-1542085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 233,
+      "name": "Liam Brown",
+      "profileImage": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 1,
+      "name": "Admin User",
+      "profileImage": "https://images.pexels.com/photos/207210/pexels-photo-207210.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "role": "admin"
+    }
+  ],
+  "total": 19,
+  "skip": 0,
+  "limit": 30
+}
