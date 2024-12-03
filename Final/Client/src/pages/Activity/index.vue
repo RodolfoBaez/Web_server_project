@@ -4,7 +4,7 @@ import { ref, computed } from 'vue';
 import { usePostsStore } from '@/store/posts'; // Import the posts store
 import PostCard from '@/components/PostCard.vue';
 import PostForm from '@/components/PostForm.vue';
-import type { Post } from '@/models/posts';
+import type { Posts } from '@/models/posts';
 
 const props = defineProps(['currentUser']);
 const postsStore = usePostsStore(); // Get access to the posts store
@@ -12,16 +12,16 @@ const postsStore = usePostsStore(); // Get access to the posts store
 const userPosts = computed(() => {
   if (props.currentUser) {
     return postsStore.getPosts()
-      .filter((post: Post) => post.userId === props.currentUser.id)
-      .sort((a: Post, b: Post) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+      .filter((post: Posts) => post.userId === props.currentUser.id)
+      .sort((a: Posts, b: Posts) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
   }
   return [];
 });
 
 const showForm = ref(false);
-const createdPost = ref<Post | null>(null); 
+const createdPost = ref<Posts | null>(null); 
 
-const handlePostSubmission = (postData: Post) => {
+const handlePostSubmission = (postData: Posts) => {
   createdPost.value = postData;
   postsStore.addPost(postData); 
   showForm.value = false;

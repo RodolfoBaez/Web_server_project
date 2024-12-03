@@ -1,13 +1,27 @@
-import { ref } from 'vue';
-import { getAll as getAllPosts, type Post } from '@/models/posts';
+import { ref, onMounted } from 'vue';
+import { getAll as getAllPosts, type Posts } from '@/models/posts';
 
-const allPosts = ref<Post[]>(getAllPosts().data); 
-
-// Function to get all posts
 export const usePostsStore = () => {
+  const allPosts = ref<Posts[]>([]);
+
+  // Function to fetch posts and assign them to the state
+  const fetchPosts = async () => {
+    try {
+      const response = await getAllPosts(); // Ensure this is an async call
+      allPosts.value = response.data; // Access data from the resolved promise
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    }
+  };
+
+  // Call the fetchPosts method when the component is mounted
+  onMounted(() => {
+    fetchPosts();
+  });
+
   const getPosts = () => allPosts.value;
 
-  const addPost = (post: Post) => {
+  const addPost = (post: Posts) => {
     allPosts.value.push(post);
   };
 
@@ -15,21 +29,15 @@ export const usePostsStore = () => {
     allPosts.value = allPosts.value.filter((post) => post.id !== postId);
   };
 
-  // New function to delete all posts by a specific user
   const deletePostsByUserId = (userId: number) => {
-    // Get all posts by userId
     const userPosts = allPosts.value.filter(post => post.userId === userId);
-
-    // Delete each post by calling deletePost
-    userPosts.forEach(post => {
-      deletePost(post.id); // Delete using the deletePost method
-    });
+    userPosts.forEach(post => deletePost(post.id));
   };
 
   return {
     getPosts,
     addPost,
     deletePost,
-    deletePostsByUserId, 
+    deletePostsByUserId,
   };
 };

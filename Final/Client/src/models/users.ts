@@ -7,7 +7,8 @@ let users = [...data.items];
 export function getAll(): DataListEnvelope<User> {
   return {
     data: users,  
-    total: users.length, 
+    total: users.length,
+    isSuccess: true // Adding the missing 'isSuccess' property
   };
 }
 

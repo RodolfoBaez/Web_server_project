@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Post } from '@/models/posts';
+import type { Posts } from '@/models/posts';
 import type { User } from '@/models/users';
 
 defineProps<{
-  post: Post;
+  post: Posts;
   user: User; 
   currentUser: User; 
 }>();
@@ -42,7 +42,6 @@ const formatDate = (dateString: string) => {
     </div>
 
     <div class="post-exercise-info">
-      <p class="exercise-type">🏋️‍♂️ Exercise Type: {{ post.exerciseType }}</p>
       <p class="duration">⏳ Duration: {{ post.duration }} Minutes</p>
     </div>
 

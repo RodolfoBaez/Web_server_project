@@ -2,7 +2,7 @@
 <!-- eslint-disable vue/no-side-effects-in-computed-properties -->
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { getAll as getAllPosts, type Post } from '@/models/posts'; 
+import { getAll as getAllPosts, type Posts } from '@/models/posts'; 
 import { getAll as getAllUsers, type User } from '@/models/users'; 
 import PostCard from '@/components/PostCard.vue'; 
 import { usePostsStore } from '@/store/posts'; 
@@ -17,7 +17,7 @@ const props = defineProps<{
 }>();
 
 // Initialize displayed posts
-const displayedPosts = ref<Post[]>([]);
+const displayedPosts = ref<Posts[]>([]);
 const postsPerLoad = 4;
 
 // Filter posts that have valid user data (non-empty name and profile image)
@@ -29,7 +29,7 @@ const filteredPosts = computed(() => {
 });
 
 const sortedPosts = computed(() => {
-  return filteredPosts.value.sort((a: Post, b: Post) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+  return filteredPosts.value.sort((a: Posts, b: Posts) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
 });
 
 // This computed property returns all posts, including the current user's posts
