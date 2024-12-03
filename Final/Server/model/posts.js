@@ -1,6 +1,3 @@
-/*  B"H
- */
-
 /** @type {{ items: Posts[] }} */
 const data = require("../data/posts.json");
 const { getConnection } = require("./supabase");
@@ -62,7 +59,7 @@ async function add(post) {
         .from("posts")
         .insert([
             {
-                id: post.id,
+                // Exclude 'id' from being sent in the request body
                 title: post.title,
                 body: post.body,
                 tags: post.tags,
@@ -89,7 +86,9 @@ async function add(post) {
  */
 async function seed() {
     for (const post of data.items) {
-        await add(post);
+        // Exclude 'id' while seeding data
+        const { id, ...postWithoutId } = post;
+        await add(postWithoutId);
     }
 }
 
