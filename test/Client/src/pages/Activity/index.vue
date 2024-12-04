@@ -1,41 +1,47 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { usePostsStore } from '@/store/posts'; 
-import { remove } from '@/models/posts'; 
+import { ref, computed, onMounted } from 'vue';
+import { getAll, remove } from '@/models/posts'; // Importing from posts.ts
 import PostCard from '@/components/PostCard.vue';
 import PostForm from '@/components/PostForm.vue';
-import type { Posts } from '@/models/posts';
+import type { Posts } from '@/models/posts'; 
 
 const props = defineProps(['currentUser']);
-const postsStore = usePostsStore(); 
 
-const userPosts = computed(() => {
-  if (props.currentUser) {
-    return postsStore.getPosts()
-      .filter((post: Posts) => post.userId === props.currentUser.id)
-      .sort((a: Posts, b: Posts) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
-  }
-  return [];
-});
-
+const userPosts = ref<Posts[]>([]);
 const showForm = ref(false);
 const createdPost = ref<Posts | null>(null); 
 
+// Fetch user posts based on logged-in user's ID
+const fetchUserPosts = async () => {
+  if (props.currentUser) {
+    try {
+      const response = await getAll(); // Fetch all posts
+      const posts = response.data;
+      userPosts.value = posts.filter((post: Posts) => post.userId === props.currentUser.id)
+                              .sort((a: Posts, b: Posts) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  }
+};
+
+// Call fetchUserPosts on component mount
+onMounted(() => {
+  fetchUserPosts();
+});
+
 const handlePostSubmission = (postData: Posts) => {
   createdPost.value = postData;
-  postsStore.addPost(postData); 
+  userPosts.value.unshift(postData); // Add the new post to the front
   showForm.value = false;
 };
 
-// Updated deletePost method
+// Updated deletePost method to call the remove function from posts.ts
 const deletePost = async (postId: number) => {
   try {
-    // Call the remove function to delete the post via API
-    await remove(postId); 
-    
-    // After successful API call, remove the post from the store
-    postsStore.deletePost(postId);
+    await remove(postId); // Delete post via API
+    userPosts.value = userPosts.value.filter(post => post.id !== postId); // Remove from local state
   } catch (error) {
     console.error('Error deleting post:', error); // Handle error if needed
   }

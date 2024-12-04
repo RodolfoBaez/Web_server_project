@@ -1,0 +1,27 @@
+# B"H
+
+###
+GET https://google.com
+
+###
+GET http://localhost:3001/about
+
+###
+GET http://localhost:3001/api/v1/users
+
+###
+GET http://localhost:3001/api/v1/users/30
+
+###
+DELETE http://localhost:3001/api/v1/users/15
+
+###
+POST http://localhost:3001/api/v1/users
+Content-Type: application/json
+
+{
+    "name": "rolfi",
+    "email": "email.com",
+    "profile_image": "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg",
+    "role": "user"
+}
