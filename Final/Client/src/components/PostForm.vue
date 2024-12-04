@@ -21,19 +21,10 @@ const formData = ref({
   userId: props.currentUser ? props.currentUser.id : null, 
   imageUrl: '',
   timestamp: '',
-  exerciseType: '',  
   duration: 0,       
 });
 
 const tagsInput = ref('');
-
-const exercises = ref([
-  { id: 1, name: 'Running' },
-  { id: 2, name: 'Cycling' },
-  { id: 3, name: 'Swimming' },
-  { id: 4, name: 'Weightlifting' },
-  { id: 5, name: 'Yoga' },
-]);
 
 const closeForm = () => {
   emit('close');
@@ -43,14 +34,32 @@ const updateTags = () => {
   formData.value.tags = tagsInput.value.split(',').map(tag => tag.trim());
 };
 
-const submitForm = () => {
+const submitForm = async () => {
   updateTags();
   
   formData.value.timestamp = new Date().toISOString();
 
-  emit('submit', formData.value);
+  try {
+    const response = await fetch('http://localhost:3001/api/v1/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData.value),
+    });
 
-  closeForm();
+    if (!response.ok) {
+      throw new Error('Failed to create post');
+    }
+
+    const responseData = await response.json();
+    console.log('Post created:', responseData);
+    
+    emit('submit', formData.value);
+    closeForm();
+  } catch (error) {
+    console.error('Error submitting post:', error);
+  }
 };
 </script>
 
@@ -74,18 +83,7 @@ const submitForm = () => {
             <label for="tags">Tags (comma-separated):</label>
             <input type="text" v-model="tagsInput" @blur="updateTags" />
           </div>
-  
-          <!-- Exercise Type Selection -->
-          <div class="form-group">
-            <label for="exerciseType">Exercise Type:</label>
-            <select v-model="formData.exerciseType" required>
-              <option disabled value="">Select an exercise</option>
-              <option v-for="exercise in exercises" :key="exercise.id" :value="exercise.name">
-                {{ exercise.name }}
-              </option>
-            </select>
-          </div>
-  
+
           <!-- Duration Input -->
           <div class="form-group">
             <label for="duration">Duration (in minutes):</label>
@@ -101,9 +99,8 @@ const submitForm = () => {
         </form>
       </div>
     </div>
-  </template>
-  
-  
+</template>
+
 <style scoped>
 .modal {
   display: flex;

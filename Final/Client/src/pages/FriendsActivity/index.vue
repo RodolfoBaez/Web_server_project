@@ -32,9 +32,9 @@ const sortedPosts = computed(() => {
   return filteredPosts.value.sort((a: Posts, b: Posts) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
 });
 
-// This computed property returns all posts, including the current user's posts
+// This computed property returns all posts
 const allUserPosts = computed(() => {
-  return sortedPosts.value; 
+  return sortedPosts.value;
 });
 
 // Function to load initial posts

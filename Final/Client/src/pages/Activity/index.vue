@@ -1,13 +1,13 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { usePostsStore } from '@/store/posts'; // Import the posts store
+import { usePostsStore } from '@/store/posts'; 
+import { remove } from '@/models/posts'; 
 import PostCard from '@/components/PostCard.vue';
 import PostForm from '@/components/PostForm.vue';
 import type { Posts } from '@/models/posts';
 
 const props = defineProps(['currentUser']);
-const postsStore = usePostsStore(); // Get access to the posts store
+const postsStore = usePostsStore(); 
 
 const userPosts = computed(() => {
   if (props.currentUser) {
@@ -27,8 +27,17 @@ const handlePostSubmission = (postData: Posts) => {
   showForm.value = false;
 };
 
-const deletePost = (postId: number) => {
-  postsStore.deletePost(postId); 
+// Updated deletePost method
+const deletePost = async (postId: number) => {
+  try {
+    // Call the remove function to delete the post via API
+    await remove(postId); 
+    
+    // After successful API call, remove the post from the store
+    postsStore.deletePost(postId);
+  } catch (error) {
+    console.error('Error deleting post:', error); // Handle error if needed
+  }
 };
 </script>
 
