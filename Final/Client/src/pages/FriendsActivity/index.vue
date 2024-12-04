@@ -1,122 +1,83 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-<!-- eslint-disable vue/no-side-effects-in-computed-properties -->
-<script setup lang="ts">
-import { ref, computed } from 'vue';
-import { getAll as getAllPosts, type Posts } from '@/models/posts'; 
-import { getAll as getAllUsers, type User } from '@/models/users'; 
-import PostCard from '@/components/PostCard.vue'; 
-import { usePostsStore } from '@/store/posts'; 
-
-const postsStore = usePostsStore(); 
-const allPosts = postsStore.getPosts(); 
-const allUsers = getAllUsers().data;
-
-// Current user prop 
-const props = defineProps<{
-  currentUser: User;
-}>();
-
-// Initialize displayed posts
-const displayedPosts = ref<Posts[]>([]);
-const postsPerLoad = 4;
-
-// Filter posts that have valid user data (non-empty name and profile image)
-const filteredPosts = computed(() => {
-  return allPosts.filter(post => {
-    const user = allUsers.find(user => user.id === post.userId);
-    return user && user.name && user.profileImage; // Only return posts with valid user info
-  });
-});
-
-const sortedPosts = computed(() => {
-  return filteredPosts.value.sort((a: Posts, b: Posts) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
-});
-
-// This computed property returns all posts
-const allUserPosts = computed(() => {
-  return sortedPosts.value;
-});
-
-// Function to load initial posts
-const loadInitialPosts = () => {
-  const initialPosts = allUserPosts.value.slice(0, postsPerLoad);
-  displayedPosts.value = initialPosts;
-};
-
-// Function to load more posts
-const loadMore = () => {
-  const currentLength = displayedPosts.value.length;
-  const nextPosts = allUserPosts.value.slice(currentLength, currentLength + postsPerLoad);
-  displayedPosts.value = [...displayedPosts.value, ...nextPosts];
-};
-
-// Handle post deletion
-const deletePost = (postId: number) => {
-  postsStore.deletePost(postId); 
-  displayedPosts.value = displayedPosts.value.filter(post => post.id !== postId);
-};
-
-loadInitialPosts();
-</script>
-
 <template>
-  <div class="activity-shelf">
-    <PostCard
-      v-for="(post, index) in displayedPosts"
-      :key="index"
-      :post="post"
-      :user="allUsers.find(user => user.id === post.userId) || { id: -1, name: 'Unknown', profileImage: '' }" 
-      :currentUser="props.currentUser" 
-      @delete="deletePost(post.id)"
-    />
-  </div>
-  <div class="load-more-container" v-if="displayedPosts.length < allUserPosts.length">
-    <button class="load-more" @click="loadMore">
-      Load More
-    </button>
+  <div class="posts-container">
+    <!-- Display loading state while fetching posts -->
+    <div v-if="loading" class="loading-message">
+      Loading posts...
+    </div>
+
+    <!-- Display posts when fetched -->
+    <div v-else>
+      <div v-for="post in posts" :key="post.id" class="post-card">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.body }}</p>
+        <p><strong>Tags:</strong> {{ post.tags.join(', ') }}</p>
+        <p><strong>Reactions:</strong> Likes: {{ post.reactions.likes }} | Dislikes: {{ post.reactions.dislikes }}</p>
+        <p><strong>Views:</strong> {{ post.views }} | <strong>Duration:</strong> {{ post.duration }} minutes</p>
+        <img :src="post.imageUrl" alt="Post Image" class="post-image" />
+        <p><small>{{ post.timestamp }}</small></p>
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped>
-.activity-shelf {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; 
-  gap: 1.5rem; 
-  padding: 1rem; 
-}
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { getAll } from '@/models/posts'; // Import the getAll function to fetch posts
+import type { Posts } from '@/models/posts'; // Import the Posts interface for typing
+ // Import the Posts interface for typing
 
-.activity-shelf .post-card {
-  flex: 1 1 calc(50% - 2rem); 
-  max-width: 500px; 
-  height: auto; 
-}
+// Ref to store posts data
+const posts = ref<Posts[]>([]);
+// Ref to handle loading state
+const loading = ref(true);
 
-.load-more-container {
-  display: flex;
-  justify-content: center;
-  margin: 16px 0;
-}
-
-.load-more {
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  margin-bottom: 1rem;
-}
-
-.load-more:hover {
-  background-color: #0056b3;
-}
-
-@media (max-width: 768px) {
-  .activity-shelf .post-card {
-    flex: 1 1 100%; 
+// Fetch posts when the component is mounted
+onMounted(async () => {
+  try {
+    const response = await getAll();
+    posts.value = response.data; // Assuming the API response has a 'data' field that contains posts
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  } finally {
+    loading.value = false; // Stop loading after the request completes
   }
+});
+</script>
+
+<style scoped>
+.posts-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.post-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.post-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.post-card p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.post-card .post-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #007bff;
 }
 </style>
