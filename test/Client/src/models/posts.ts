@@ -48,6 +48,38 @@ export async function deleteAllByUserId(userId: number): Promise<void> {
 }
 
 
+// Function to get total duration of posts by a specific userId
+export async function getTotalDuration(userId: number): Promise<number> {
+  try {
+    const posts = await getAll();
+    const userPosts = posts.data.filter(post => post.userId === userId);
+    
+    // Calculate the total duration for the posts
+    const totalDuration = userPosts.reduce((sum, post) => sum + post.duration, 0);
+    return totalDuration;
+  } catch (error) {
+    console.error('Error calculating total duration:', error);
+    return 0; // Return 0 if an error occurs
+  }
+}
+
+// Function to get total views of posts by a specific userId
+export async function getTotalViews(userId: number): Promise<number> {
+  try {
+    const posts = await getAll();
+    const userPosts = posts.data.filter(post => post.userId === userId);
+
+    // Calculate the total views for the posts
+    const totalViews = userPosts.reduce((sum, post) => sum + post.views, 0);
+    return totalViews;
+  } catch (error) {
+    console.error('Error calculating total views:', error);
+    return 0; // Return 0 if an error occurs
+  }
+}
+
+
+
 // Posts model with the structure you provided
 export interface Posts {
   id: number;

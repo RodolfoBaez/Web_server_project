@@ -1,9 +1,7 @@
 <template>
-  <!-- Only show the table if the current user is an admin -->
   <div v-if="isAdmin">
     <h1>Admin - Manage Users</h1>
 
-    <!-- Displaying the users in a table -->
     <table>
       <thead>
         <tr>
