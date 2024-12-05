@@ -32,6 +32,22 @@ export interface Reaction {
   dislikes: number;
 }
 
+// Function to delete all posts by a specific userId
+export async function deleteAllByUserId(userId: number): Promise<void> {
+  try {
+    const posts = await getAll();
+    const userPosts = posts.data.filter(post => post.userId === userId);
+
+    // Delete each post matching the userId
+    for (const post of userPosts) {
+      await remove(post.id); // Remove each post by ID
+    }
+  } catch (error) {
+    console.error('Error deleting posts by userId:', error);
+  }
+}
+
+
 // Posts model with the structure you provided
 export interface Posts {
   id: number;

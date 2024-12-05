@@ -24,7 +24,6 @@ const formatDate = (dateString: string) => {
   <div class="post-card">
     <div class="post-header">
       <div class="user-info">
-        <img :src="user.profile_image" alt="User Profile Image" class="profile-image" />
         <div>
           <p class="post-username">{{ user.name }}</p>
           <p class="post-date">{{ formatDate(post.timestamp) }}</p>

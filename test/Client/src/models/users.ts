@@ -21,6 +21,24 @@ export function getById(id: number): Promise<DataEnvelope<User>> {
   return api<DataEnvelope<User>>(`users/${id}`); 
 }
 
+// Function to get the user's role by their ID
+export function getUserRoleById(id: number): Promise<string> {
+  return api<DataEnvelope<User>>(`users/${id}`)
+    .then(response => {
+      if (response.data) {
+        return response.data.role; // Return the role of the user
+      } else {
+        throw new Error('User not found');
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching user role:', error);
+      throw error;
+    });
+}
+
+
+
 // User model with essential fields
 export interface User {
   id: number;
@@ -30,3 +48,4 @@ export interface User {
   createdAt: string; 
   role: string; 
 }
+
