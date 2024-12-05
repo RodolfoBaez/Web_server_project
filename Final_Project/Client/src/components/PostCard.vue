@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Posts } from '@/models/posts';
+import { ref } from 'vue';
+import { remove, type Posts } from '@/models/posts';
 import type { User } from '@/models/users';
 
 defineProps<{
@@ -7,6 +8,12 @@ defineProps<{
   user: User;
   currentUser: User;
 }>();
+
+const emit = defineEmits<{
+  (e: 'delete', id: number): void;
+}>();
+
+const isDeleting = ref(false);
 
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -17,6 +24,24 @@ const formatDate = (dateString: string) => {
     minute: '2-digit',
   };
   return new Date(dateString).toLocaleDateString(undefined, options);
+};
+
+const handleDelete = async (postId: number) => {
+  if (isDeleting.value) return; // Prevent multiple clicks during deletion
+  
+  isDeleting.value = true;
+  
+  try {
+    // Call the remove function to delete the post
+    await remove(postId); 
+    
+    // Emit the 'delete' event to inform the parent component
+    emit('delete', postId);
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+  } finally {
+    isDeleting.value = false;
+  }
 };
 </script>
 
@@ -30,6 +55,11 @@ const formatDate = (dateString: string) => {
         </div>
       </div>
       <p class="post-views">{{ post.views }} Views</p>
+      
+      <!-- Show delete button only if the current user is the post owner -->
+      <button v-if="currentUser.id === post.userId" @click="handleDelete(post.id)" :disabled="isDeleting" class="delete-btn">
+        🗑️
+      </button>
     </div>
     
     <h3>{{ post.title }}</h3>
@@ -61,6 +91,15 @@ const formatDate = (dateString: string) => {
 </template>
 
 <style scoped>
+.delete-btn {
+  background: none;
+  border: none;
+  color: #d9534f;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 16px;
+}
+
 .post-card {
   background-color: #f9fafb;
   border-radius: 12px;
