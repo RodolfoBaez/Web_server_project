@@ -20,7 +20,7 @@ const userList = computed(() => {
   return users.value.map(user => ({
     id: user.id,
     name: user.name,
-    profileImage: user.profileImage || 'path/to/default/image.png'
+    profileImage: user.profile_image || 'path/to/default/image.png'
   }));
 });
 

@@ -4,8 +4,8 @@ import type { User } from '@/models/users';
 
 defineProps<{
   post: Posts;
-  user: User; 
-  currentUser: User; 
+  user: User;
+  currentUser: User;
 }>();
 
 const formatDate = (dateString: string) => {
@@ -24,38 +24,39 @@ const formatDate = (dateString: string) => {
   <div class="post-card">
     <div class="post-header">
       <div class="user-info">
-        <img :src="user.profileImage" alt="User profile image" class="profile-image" />
+        <img :src="user.profile_image" alt="User Profile Image" class="profile-image" />
         <div>
           <p class="post-username">{{ user.name }}</p>
-          <p class="post-views">👁 Views: {{ post.views }}</p>
           <p class="post-date">{{ formatDate(post.timestamp) }}</p>
         </div>
       </div>
-      <!-- Show delete button only if the current user is the post owner -->
-      <button v-if="currentUser.id === post.userId" @click="$emit('delete')" class="delete-btn">🗑️</button>
+      <p class="post-views">{{ post.views }} Views</p>
     </div>
-
+    
     <h3>{{ post.title }}</h3>
+    
     <div class="post-body">
       <p>{{ post.body }}</p>
-      <img v-if="post.imageUrl" :src="post.imageUrl" alt="Post image" class="post-image" />
+      <img v-if="post.imageUrl" :src="post.imageUrl" alt="Post Image" class="post-image" />
     </div>
-
-    <div class="post-exercise-info">
-      <p class="duration">⏳ Duration: {{ post.duration }} Minutes</p>
-    </div>
-
+    
     <div class="post-tags">
-      <span v-for="(tag, index) in post.tags" :key="index" class="tag">{{ tag }}</span>
+      <span v-for="tag in post.tags" :key="tag" class="tag">{{ tag }}</span>
     </div>
-
+    
     <div class="post-reactions">
       <div class="reaction">
-        <span class="reaction-icon">👍</span> {{ post.reactions.likes }}
+        <span class="reaction-icon">👍</span>
+        {{ post.reactions.likes }} Likes
       </div>
       <div class="reaction">
-        <span class="reaction-icon">👎</span> {{ post.reactions.dislikes }}
+        <span class="reaction-icon">👎</span>
+        {{ post.reactions.dislikes }} Dislikes
       </div>
+    </div>
+    
+    <div class="post-exercise-info">
+      Duration: {{ post.duration }} minutes
     </div>
   </div>
 </template>
@@ -68,7 +69,7 @@ const formatDate = (dateString: string) => {
   margin: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: calc(50% - 32px); 
+  width: calc(50% - 32px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -76,24 +77,15 @@ const formatDate = (dateString: string) => {
 }
 
 .post-card:hover {
-  transform: translateY(-10px); 
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .post-header {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   margin-bottom: 16px;
-}
-
-.delete-btn {
-  background: none;
-  border: none;
-  color: #d9534f;
-  cursor: pointer;
-  font-size: 1.5rem; 
-  margin-right: 12px; 
 }
 
 .user-info {
@@ -102,17 +94,17 @@ const formatDate = (dateString: string) => {
 }
 
 .profile-image {
-  width: 48px; 
-  height: 48px;
-  border-radius: 50%; 
-  object-fit: cover; 
-  margin-right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .post-username {
   font-weight: bold;
   color: #374151;
   font-size: 1rem;
+  margin: 0;
 }
 
 .post-views {
@@ -123,27 +115,27 @@ const formatDate = (dateString: string) => {
 .post-date {
   font-size: 0.875rem;
   color: #6b7280;
-  margin-top: 4px;
+  margin: 4px 0 0;
 }
 
 h3 {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #1f2937; 
+  color: #1f2937;
 }
 
 .post-body {
   flex-grow: 1;
   margin: 16px 0;
-  color: #374151; 
+  color: #374151;
 }
 
 .post-image {
   width: 100%;
   height: auto;
   max-height: 250px;
-  object-fit: cover; 
+  object-fit: cover;
   border-radius: 8px;
   margin-top: 12px;
 }
@@ -183,25 +175,13 @@ h3 {
 
 .post-exercise-info {
   margin: 12px 0;
-  color: #374151; 
-}
-
-.exercise-type,
-.duration {
-  font-size: 0.875rem; 
-  color: #6b7280; 
-  margin-bottom: 4px;
+  color: #374151;
 }
 
 @media (max-width: 600px) {
   .post-card {
-    width: 100%; 
+    width: 100%;
     margin: 12px 0;
-  }
-
-  .profile-image {
-    width: 40px; 
-    height: 40px;
   }
 }
 </style>

@@ -60,7 +60,7 @@ async function add(user) {
             {
                 name: user.name,
                 email: user.email,
-                profile_image: user.profileImage, 
+                profile_image: user.profile_image, 
                 created_at: user.createdAt,
                 role: user.role, // Adding role
             },
@@ -87,7 +87,7 @@ async function update(id, user) {
         .update({
             name: user.name,
             email: user.email,
-            profile_image: user.profileImage,
+            profile_image: user.profile_image,
             created_at: user.createdAt,
             role: user.role, // Updating role
         })

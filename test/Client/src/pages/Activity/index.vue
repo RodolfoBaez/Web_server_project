@@ -33,7 +33,7 @@ onMounted(() => {
 
 const handlePostSubmission = (postData: Posts) => {
   createdPost.value = postData;
-  userPosts.value.unshift(postData); // Add the new post to the front
+  userPosts.value.unshift(postData); 
   showForm.value = false;
 };
 

@@ -4,20 +4,23 @@ import { RouterLink } from 'vue-router';
 import UserDropdown from './UserDropdown.vue';
 import { defineEmits } from 'vue';
 
+// Define reactive states
 const isOpen = ref(false);
 const loggedInUser = ref<{ id: number; name: string; profileImage: string } | null>(null);
-const emit = defineEmits(['user-logged-in', 'user-logged-out']); // Add user-logged-out event
 
-// Function to handle user login when a user is selected
+// Define events
+const emit = defineEmits(['user-logged-in', 'user-logged-out']);
+
+// Handle user login
 const handleUserLoggedIn = (user: { id: number; name: string; profileImage: string }) => {
-  loggedInUser.value = user; 
+  loggedInUser.value = user;
   emit('user-logged-in', user);
 };
 
-// Function to log out the user
+// Handle logout
 const logOut = () => {
-  loggedInUser.value = null; 
-  emit('user-logged-out'); // Emit the user-logged-out event
+  loggedInUser.value = null;
+  emit('user-logged-out');
 };
 </script>
 
@@ -38,7 +41,6 @@ const logOut = () => {
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
         </a>
       </div>
 
@@ -54,7 +56,11 @@ const logOut = () => {
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons" v-if="loggedInUser">
-              <img :src="loggedInUser.profileImage" alt="User profile" class="profile-image" />
+              <img
+                :src="loggedInUser.profileImage || '@/assets/default-profile.png'"
+                alt="User profile"
+                class="profile-image"
+              />
               <span class="username">{{ loggedInUser.name }}</span>
 
               <!-- Display logout button when logged in -->
@@ -85,5 +91,6 @@ const logOut = () => {
   height: 30px;
   border-radius: 50%;
   margin-left: 10px;
+  object-fit: cover; /* Ensures the image is cropped correctly */
 }
 </style>
