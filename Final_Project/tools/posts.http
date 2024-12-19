@@ -8,6 +8,10 @@ GET http://localhost:3001/api/v1/posts/32
 DELETE http://localhost:3001/api/v1/posts/1
 ###
 
+
+http://localhost:3001/api/v1/posts/search?q=t
+###
+
 POST http://localhost:3001/api/v1/posts
 Content-Type: application/json
 

@@ -123,6 +123,26 @@ async function update(id, post) {
     };
 }
 
+async function search(query) {
+    // Ensure query is a string and not undefined
+    query = String(query || "");
+
+    // Searching only in the title
+    const { data: posts, error, count } = await conn
+        .from("posts")
+        .select("*", { count: "estimated" })
+        .ilike("title", `%${query}%`)  // Case-insensitive search in the title
+        .limit(100);
+
+    return {
+        isSuccess: !error,
+        message: error?.message,
+        data: posts,
+        total: count,
+    };
+}
+
+
 /**
  * Remove a post
  * @param {number} id
